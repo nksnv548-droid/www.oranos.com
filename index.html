@@ -1,1 +1,48 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#090b0f"><title>ORANOS — Strength is Earned. Legacy is Forged.</title><meta name="description" content="ORANOS fitness and lifestyle community. Meet Oternal. Earn the Titan Pass."><link rel="icon" href="hero-statue.png"><link rel="stylesheet" href="styles.css"></head><body><div id="app"></div><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="app.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#090b0f">
+  <title>ORANOS — Strength is Earned. Legacy is Forged.</title>
+  <meta name="description" content="ORANOS fitness and lifestyle community. Meet Oternal. Earn the Titan Pass.">
+  <link rel="icon" href="hero-statue.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <main style="min-height:100vh;display:grid;place-items:center;padding:24px;color:#f4f2ed;background:#090b0f;font-family:system-ui,sans-serif;text-align:center">
+      <div><p style="letter-spacing:.25em">ORANOS</p><p>Loading the ORANOS experience…</p></div>
+    </main>
+  </div>
+  <script>
+    (() => {
+      const app = document.getElementById("app");
+      const showLoadError = () => {
+        app.innerHTML = '<main style="min-height:100vh;display:grid;place-items:center;padding:24px;color:#f4f2ed;background:#090b0f;font-family:system-ui,sans-serif;text-align:center"><div><p style="letter-spacing:.25em">ORANOS</p><h1>We could not load the experience.</h1><p style="color:#aab2be">Please check your connection and try again.</p><button onclick="location.reload()" style="padding:12px 20px;border:1px solid #46516a;border-radius:999px;background:#315cff;color:white">Try again</button></div></main>';
+      };
+      const loadApp = () => {
+        const appScript = document.createElement("script");
+        appScript.src = "app.js";
+        appScript.onerror = showLoadError;
+        document.body.appendChild(appScript);
+      };
+      const loadSdk = (urls, index = 0) => {
+        if (index >= urls.length) return showLoadError();
+        const script = document.createElement("script");
+        script.src = urls[index];
+        script.onload = () => {
+          if (window.supabase?.createClient) loadApp();
+          else loadSdk(urls, index + 1);
+        };
+        script.onerror = () => loadSdk(urls, index + 1);
+        document.head.appendChild(script);
+      };
+      loadSdk([
+        "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2",
+        "https://unpkg.com/@supabase/supabase-js@2/dist/umd/supabase.js"
+      ]);
+    })();
+  </script>
+</body>
+</html>
