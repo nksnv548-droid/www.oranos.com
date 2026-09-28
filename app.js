@@ -123,4 +123,21 @@ window.finalizeTitan=async(applicationId,outcome)=>{
  else toast(outcome==="passed"?"TITAN PASS FINALIZED · EVIDENCE PURGED":"TITAN ATTEMPT FAILED · EVIDENCE PURGED");
  location.hash="#/admin";
 };
+window.viewVideo=async(id)=>{
+ const {data:d,error}=await db.from("titan_submissions").select("video_path,profiles(full_name),titan_challenges(name)").eq("id",id).single();
+ if(error||!d?.video_path)return toast("Evidence video unavailable.");
+ const {data:signed,error:e}=await db.storage.from("titan-videos").createSignedUrl(d.video_path,600);
+ if(e)return toast(e.message);
+ const viewer=document.querySelector("#videoViewer");if(!viewer)return toast("Video viewer is unavailable.");
+ viewer.innerHTML='<div class="capture"><div class="capturebar"><b>FITNESS EVIDENCE</b><button class="btn" onclick="document.querySelector(\'#videoViewer\').innerHTML=\'\'">Close</button></div><p><b>'+esc(d.profiles?.full_name||"Applicant")+'</b> · '+esc(d.titan_challenges?.name||"Challenge")+'</p><video controls playsinline preload="metadata" src="'+esc(signed.signedUrl)+'"></video></div>';
+ viewer.scrollIntoView({behavior:"smooth",block:"center"});
+};
+window.viewSignals=async(id)=>{
+ const {data:d,error}=await db.from("titan_submissions").select("integrity_status,integrity_signals,client_metadata,reviewer_notes").eq("id",id).single();
+ if(error)return toast(error.message);
+ const viewer=document.querySelector("#videoViewer");if(!viewer)return toast("Review panel unavailable.");
+ const payload={integrity_status:d.integrity_status||"not_recorded",integrity_signals:d.integrity_signals||{},client_metadata:d.client_metadata||{},reviewer_notes:d.reviewer_notes||null};
+ viewer.innerHTML='<div class="capture"><div class="capturebar"><b>INTEGRITY REVIEW · SIGNALS ONLY</b><button class="btn" onclick="document.querySelector(\'#videoViewer\').innerHTML=\'\'">Close</button></div><p>Signals are review aids, not proof of cheating or automated verification.</p><pre class="signal-json">'+esc(JSON.stringify(payload,null,2))+'</pre></div>';
+ viewer.scrollIntoView({behavior:"smooth",block:"center"});
+};
 window.viewDeclarationVideo=async(id)=>{const {data:d,error}=await db.from("titan_declarations").select("video_path,profiles(full_name)").eq("id",id).single();if(error||!d?.video_path)return toast("Declaration video unavailable.");const {data:url,error:e}=await db.storage.from("titan-videos").createSignedUrl(d.video_path,600);if(e)return toast(e.message);document.querySelector("#videoViewer").innerHTML='<div class="capture"><div class="capturebar"><b>FINAL DECLARATION</b><button class="btn" onclick="document.querySelector(\'#videoViewer\').innerHTML=\'\'">Close</button></div><p><b>'+esc(d.profiles?.full_name||"Applicant")+'</b></p><video controls playsinline src="'+esc(url.signedUrl)+'"></video></div>';document.querySelector("#videoViewer").scrollIntoView({behavior:"smooth",block:"center"})}
