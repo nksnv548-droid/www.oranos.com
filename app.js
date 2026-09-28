@@ -48,7 +48,21 @@ async function admin(){
  };
 }window.review=async(id,decision)=>{if(!["approved","reattempt","rejected"].includes(decision))return toast("Invalid review decision.");const {data:{user}}=await db.auth.getUser();if(!user)return location.hash="#/apply";const notes=prompt("Reviewer note (optional)","");if(notes===null)return;const sub=await db.from("titan_submissions").select("id,user_id,application_id,session_id").eq("id",id).single();if(sub.error)return toast(sub.error.message);const u=await db.from("titan_submissions").update({status:decision,reviewer_notes:notes,reviewed_at:new Date().toISOString(),reviewed_by:user.id}).eq("id",id);if(u.error)return toast(u.error.message);if(sub.data.session_id){const ss=await db.from("titan_sessions").update({status:decision==="approved"?"approved":decision}).eq("id",sub.data.session_id);if(ss.error)return toast(ss.error.message)}const rv=await db.from("titan_reviews").insert({submission_id:id,reviewer_id:user.id,decision,notes});if(rv.error)return toast(rv.error.message);toast("Review saved. Final Titan outcome requires separate server-side finalization.");admin()}
 
-async function router(){const r=location.hash.slice(1)||"/";if(r==="/")home();else if(r==="/oternal")oternal();else if(r==="/community")community();else if(r==="/titan")titanV2();else if(r==="/execution")titanExecution();else if(r==="/declaration")titanDeclaration();else if(r==="/apply")apply();else if(r==="/challenge")challenge();else if(r==="/dashboard")dashboard();else if(r==="/admin")admin();else home()}addEventListener("hashchange",router);router()})()
+async 
+function enhanceMotion(){
+ const root=document.querySelector("#app")||document.body;
+ root.classList.remove("motion-ready");
+ const reduced=window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+ if(reduced||!("IntersectionObserver" in window))return;
+ const targets=[...root.querySelectorAll(".hero-copy > *, .hero-visual, .section-intro, .section > .eyebrow, .section > h2, .manifesto-copy, .pillar-card, .standard-frame, .trial-mini > div, .pass-emblem, .community-grid > *, .oternal-orb, .journey-line article, .final-cta > *")];
+ targets.forEach((el,i)=>{el.classList.add("motion-reveal");el.style.setProperty("--reveal-delay",(Math.min(i%5,4)*75)+"ms")});
+ root.classList.add("motion-ready");
+ const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
+  if(entry.isIntersecting){entry.target.classList.add("is-visible");observer.unobserve(entry.target)}
+ }),{threshold:.12,rootMargin:"0px 0px -36px 0px"});
+ targets.forEach(el=>observer.observe(el));
+}
+function router(){const r=location.hash.slice(1)||"/";if(r==="/")home();else if(r==="/oternal")oternal();else if(r==="/community")community();else if(r==="/titan")titanV2();else if(r==="/execution")titanExecution();else if(r==="/declaration")titanDeclaration();else if(r==="/apply")apply();else if(r==="/challenge")challenge();else if(r==="/dashboard")dashboard();else if(r==="/admin")admin();else home();enhanceMotion()}addEventListener("hashchange",router);router()})()
 /* TITAN_ANTI_CHEAT_V1 */
 function titanIntegritySummary(meta={}){const s=[];if(meta.visibilityChanges>0)s.push("page_visibility_changed");if((meta.chunkCount||0)<4)s.push("low_recording_chunk_count");if((meta.duration||0)<3)s.push("very_short_recording");if((meta.size||0)<50000)s.push("very_small_video");if(meta.mime&&!/^video\/(webm|mp4)/i.test(meta.mime))s.push("unexpected_video_type");return s}
 function titanIntegrityStatus(signals=[]){return signals.length?"review_flagged":"review"}
