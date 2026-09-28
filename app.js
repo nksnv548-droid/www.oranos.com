@@ -73,7 +73,7 @@ async function titanExecution(){
  if(new Set((subs||[]).map(x=>x.challenge_id)).size<5){toast("Finish Fitness first.");return location.hash="#/challenge";}
  const {data:state,error:se}=await db.rpc("titan_checkin_state",{p_application_id:a.id});
  if(se)return toast(se.message);
- if(state.stale){await db.from("titan_applications").update({status:"reattempt"}).eq("id",a.id);return location.hash="#/execution";}
+ if(state.stale){const missed=await db.rpc("titan_mark_missed_attempt",{p_application_id:a.id});if(missed.error)return toast(missed.error.message);return location.hash="#/execution";}
  if(state.same_day_locked){return shell('<section class="pagehead center"><p class="eyebrow">TITAN V2 · DAY '+state.last_completed_day+'</p><h1>CHECK-IN COMPLETE.</h1><p>You have completed today’s check-in. The next day unlocks tomorrow.</p><a class="btn primary" href="#/dashboard">View My Titan</a></section>');}
  const day=Number(state.next_day||1),today=state.server_date;
  if(day>7)return location.hash="#/declaration";
