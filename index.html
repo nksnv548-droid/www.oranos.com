@@ -7,10 +7,61 @@
 <title>ORANOS — Strength is Earned. Legacy is Forged.</title>
 <meta name="description" content="ORANOS is a fitness, mindset, lifestyle and discipline community built around a shared standard.">
 <link rel="stylesheet" href="styles.css">
+<style>
+  html,body{margin:0;background:#080a0d;color:#f5f2e9}
+  .static-fallback{min-height:100svh;background:radial-gradient(ellipse at 80% 30%,#182238 0,#080a0d 48%,#080a0d 75%);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+  .static-nav{height:78px;padding:0 5vw;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff12;color:#f5f2e9}
+  .static-brand{font-size:14px;font-weight:700;letter-spacing:.34em}
+  .static-nav a{color:#d6d2c8;text-decoration:none;font-size:10px;letter-spacing:.14em}
+  .static-nav-links{display:flex;gap:24px}
+  .static-hero{min-height:calc(100svh - 79px);display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:5vw;padding:6vw 7vw}
+  .static-eyebrow{color:#c9aa67;font-size:10px;letter-spacing:.28em}
+  .static-hero h1{font-size:clamp(54px,8vw,112px);line-height:.91;letter-spacing:-.065em;font-weight:650;margin:16px 0 24px;max-width:880px}
+  .static-hero h1 span{color:#e3d2a5}
+  .static-hero p{color:#b9b8b3;max-width:620px;font-size:18px;line-height:1.75}
+  .static-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+  .static-btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border:1px solid #4a4b4b;border-radius:8px;color:#f7f4eb;text-decoration:none;font-weight:600}
+  .static-btn.primary{background:#c9aa67;border-color:#c9aa67;color:#101114}
+  .static-emblem{width:min(34vw,430px);aspect-ratio:1;border:1px solid #c9aa6740;border-radius:50%;display:grid;place-items:center;justify-self:center;color:#c9aa67;background:radial-gradient(circle,#1a2231,#0b0e13 68%);box-shadow:0 30px 100px #0008,inset 0 0 80px #c9aa6710}
+  .static-emblem svg{width:78%;height:78%}
+  @media(max-width:850px){.static-nav-links{display:none}.static-hero{grid-template-columns:1fr;padding:48px 22px 70px}.static-emblem{width:min(76vw,320px);order:-1}.static-hero h1{font-size:clamp(52px,14vw,82px)}}
+</style>
 </head>
 <body>
-<div id="app"></div>
-<noscript><main class="boot-screen"><div><div class="boot-mark">ORANOS</div><p>JavaScript is required to experience ORANOS.</p></div></main></noscript>
+<div id="app">
+  <main class="static-fallback">
+    <header class="static-nav">
+      <a class="static-brand" href="#/">ORANOS</a>
+      <nav class="static-nav-links" aria-label="Primary">
+        <a href="#/">THE WORLD</a>
+        <a href="#/community">COMMUNITY</a>
+        <a href="#/oternal">OTERNAL</a>
+        <a href="#/titan">TITAN</a>
+      </nav>
+    </header>
+    <section class="static-hero">
+      <div>
+        <div class="static-eyebrow">ORANOS · THE MODERN BROTHERHOOD</div>
+        <h1>FORGE THE<br><span>PERSON YOU CHOOSE TO BECOME.</span></h1>
+        <p>A fitness and lifestyle community built around four pillars — Fitness, Mindset, Lifestyle and Discipline.</p>
+        <div class="static-actions">
+          <a class="static-btn primary" href="#/titan">ENTER TITAN</a>
+          <a class="static-btn" href="#/oternal">DISCOVER OTERNAL</a>
+        </div>
+      </div>
+      <div class="static-emblem" aria-label="ORANOS crown emblem">
+        <svg viewBox="0 0 420 420" aria-hidden="true">
+          <circle cx="210" cy="210" r="180" fill="none" stroke="currentColor" stroke-opacity=".25"/>
+          <circle cx="210" cy="210" r="158" fill="none" stroke="currentColor" stroke-opacity=".12"/>
+          <path d="M104 262 82 142l88 67 40-111 40 111 88-67-22 120-212 0Z" fill="none" stroke="currentColor" stroke-width="7" stroke-linejoin="round"/>
+          <path d="M119 283h182M143 305h134" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+          <circle cx="82" cy="142" r="8" fill="currentColor"/><circle cx="210" cy="98" r="8" fill="currentColor"/><circle cx="338" cy="142" r="8" fill="currentColor"/>
+        </svg>
+      </div>
+    </section>
+  </main>
+</div>
+<noscript><div class="static-fallback"><section class="static-hero"><div><div class="static-eyebrow">ORANOS</div><h1>FORGE THE<br><span>PERSON YOU CHOOSE TO BECOME.</span></h1><p>JavaScript is required for the interactive Titan experience.</p></div></section></div></noscript>
 <script src="app.js" defer></script>
 </body>
 </html>
