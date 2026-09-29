@@ -1,1 +1,47 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ORANOS Member Access</title></head><body><main><h1>ORANOS Member Access</h1><p>Authentication setup is staged. Configure the public Supabase client key before enabling sign-in.</p><a href="community.html">Community</a></main></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b0d10">
+<title>ORANOS — Member Access</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#0b0d10;color:#f6f1e7;min-height:100vh;display:grid;place-items:center;padding:24px}
+main{width:min(460px,100%);padding:34px;border:1px solid rgba(255,255,255,.12);border-radius:20px;background:rgba(20,22,26,.94);box-shadow:0 24px 80px rgba(0,0,0,.45)}
+h1{margin:0 0 8px;font-size:32px;letter-spacing:.08em}p{color:#b8b4aa;line-height:1.55}.tabs{display:flex;gap:8px;margin:24px 0}.tabs button,.secondary{flex:1;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.13);background:#171a1f;color:#ddd8cc;cursor:pointer}.tabs button.active{background:#d6b36a;color:#111}.field{margin:14px 0}.field label{display:block;margin-bottom:7px;font-size:13px;color:#c9c4b7}.field input{width:100%;padding:13px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.13);background:#101217;color:#fff;outline:0}.row{display:flex;gap:10px}.row .field{flex:1}.password-wrap{position:relative}.password-wrap input{padding-right:54px}.show{position:absolute;right:8px;top:8px;border:0;background:transparent;color:#aaa;padding:8px;cursor:pointer}.primary{width:100%;padding:14px;margin-top:10px;border:0;border-radius:11px;background:#d6b36a;color:#111;font-weight:700;cursor:pointer}.link{margin-top:15px;text-align:center}.link button{border:0;background:transparent;color:#d6b36a;cursor:pointer}.msg{min-height:24px;margin-top:16px;font-size:14px}.msg.error{color:#ff8d8d}.msg.ok{color:#9ed6ad}.back{display:block;margin-top:22px;text-align:center;color:#aaa;text-decoration:none;font-size:14px}
+</style>
+</head>
+<body>
+<main>
+<div style="font-size:12px;letter-spacing:.22em;color:#d6b36a;margin-bottom:18px">ORANOS COMMUNITY</div>
+<h1>MEMBER ACCESS</h1>
+<p id="intro">Enter your details to access your ORANOS member account.</p>
+<div class="tabs"><button id="loginTab" class="active" type="button">Sign in</button><button id="signupTab" type="button">Create account</button></div>
+<form id="form" novalidate>
+<div id="nameField" class="field" hidden><label for="name">Full name</label><input id="name" autocomplete="name"></div>
+<div class="field"><label for="email">Email</label><input id="email" type="email" autocomplete="email" required></div>
+<div class="field"><label for="password">Password</label><div class="password-wrap"><input id="password" type="password" minlength="8" autocomplete="current-password" required><button class="show" id="showPassword" type="button">Show</button></div></div>
+<div id="confirmField" class="field" hidden><label for="confirm">Confirm password</label><div class="password-wrap"><input id="confirm" type="password" minlength="8" autocomplete="new-password"><button class="show" id="showConfirm" type="button">Show</button></div></div>
+<button id="submit" class="primary" type="submit">Sign in</button>
+</form>
+<div class="link"><button id="reset" type="button">Forgot password?</button></div>
+<div id="msg" class="msg" aria-live="polite"></div>
+<a class="back" href="community.html">← Back to community</a>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL="https://pbohqygrzesddmgmrfma.supabase.co";
+const SUPABASE_KEY="sb_publishable_OSKC6mR5O2iHPG1g63tyXA_wtd1y7oX";
+const client=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
+const $=id=>document.getElementById(id);
+let mode="login";
+function message(text,type=""){ $("msg").textContent=text; $("msg").className="msg "+type; }
+function setMode(next){mode=next;const signup=next==="signup";$("loginTab").classList.toggle("active",!signup);$("signupTab").classList.toggle("active",signup);$("nameField").hidden=!signup;$("confirmField").hidden=!signup;$("submit").textContent=signup?"Create account":"Sign in";$("intro").textContent=signup?"Create your ORANOS member account with your name, email and password.":"Enter your details to access your ORANOS member account.";message("");}
+function toggle(id,btn){const input=$(id);input.type=input.type==="password"?"text":"password";btn.textContent=input.type==="password"?"Show":"Hide";}
+$("loginTab").onclick=()=>setMode("login");$("signupTab").onclick=()=>setMode("signup");$("showPassword").onclick=()=>toggle("password",$("showPassword"));$("showConfirm").onclick=()=>toggle("confirm",$("showConfirm"));
+$("reset").onclick=async()=>{const email=$("email").value.trim();if(!email)return message("Enter your email first.","error");const {error}=await client.auth.resetPasswordForEmail(email,{redirectTo:location.origin+location.pathname});message(error?error.message:"Password reset instructions sent if this email is registered.",""+(error?"error":"ok"));};
+$("form").onsubmit=async e=>{e.preventDefault();message("");$("submit").disabled=true;try{const email=$("email").value.trim();const password=$("password").value;if(password.length<8)throw new Error("Password must be at least 8 characters.");let result;if(mode==="signup"){const name=$("name").value.trim();const confirm=$("confirm").value;if(!name)throw new Error("Please enter your full name.");if(password!==confirm)throw new Error("Passwords do not match.");result=await client.auth.signUp({email,password,options:{data:{full_name:name}}});}else{result=await client.auth.signInWithPassword({email,password});}if(result.error)throw result.error;if(result.data.session){location.href="account.html";}else if(mode==="signup"){message("Account created. Check your email to confirm your account, then sign in.","ok");setMode("login");}else{message("Signed in. Redirecting…","ok");}}catch(err){message(err.message||"Authentication failed.","error");}finally{$("submit").disabled=false;}};
+client.auth.getSession().then(({data})=>{if(data.session)location.href="account.html";});
+</script>
+</body>
+</html>
