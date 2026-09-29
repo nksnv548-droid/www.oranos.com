@@ -1,0 +1,19 @@
+name: Next.js build
+on:
+  push:
+    branches:
+      - oranos-production-source-dev-20260929
+  pull_request:
+    branches:
+      - oranos-production-source-dev-20260929
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm install
+      - run: npm run build
