@@ -688,10 +688,13 @@ footer{
 <div id="lightning"></div><div class="grain"></div><div class="vignette"></div><div id="particles"></div>
 <nav id="nav">
 <a href="index.html" class="nav-logo">ORANOS</a>
-<div class="nav-links">
+<button id="navToggle" class="nav-toggle" type="button" aria-label="Open navigation menu" aria-controls="navLinks" aria-expanded="false">
+<span></span><span></span><span></span>
+</button>
+<div id="navLinks" class="nav-links">
 <a href="index.html">Home</a><a href="#meaning">Our Community</a><a href="#founder">Founder & Vision</a><a href="#pillars">Four Pillars</a><a href="#journey">Your Journey</a><a href="#standard">The Standard</a>
+<a href="index.html#titan" class="nav-cta">Titan Challenge</a>
 </div>
-<a href="index.html#titan" class="btn btn-outline">Titan Challenge</a>
 </nav>
 <main>
 <section id="hero" class="community-hero">
@@ -780,7 +783,7 @@ footer{
 </div>
 </section>
 <section id="final" class="community-cta">
-<div class="container"><span class="eyebrow reveal">Your next chapter</span><h2 class="section-title reveal">THE STANDARD STARTS WITH YOU.</h2><p class="lede reveal reveal-delay-1">Choose the next honest step. Build it into your life. Keep going.</p><a href="index.html#community" class="btn btn-outline reveal reveal-delay-2">Join the ORANOS Community</a></div>
+<div class="container"><span class="eyebrow reveal">Your next chapter</span><h2 class="section-title reveal">THE STANDARD STARTS WITH YOU.</h2><p class="lede reveal reveal-delay-1">Choose the next honest step. Build it into your life. Keep going.</p><a href="#journey" class="btn btn-outline reveal reveal-delay-2">Explore the Community Journey</a></div>
 </section>
 </main>
 <footer class="section"><div class="container"><a href="index.html">← Back to ORANOS Home</a><p>ORANOS · Fitness · Mindset · Lifestyle · Discipline</p></div></footer>
@@ -803,11 +806,15 @@ footer{
   navToggle.addEventListener('click', function(){
     toggleOpen = !toggleOpen;
     navLinks.classList.toggle('open', toggleOpen);
+    navToggle.setAttribute('aria-expanded', String(toggleOpen));
+    navToggle.setAttribute('aria-label', toggleOpen ? 'Close navigation menu' : 'Open navigation menu');
   });
   navLinks.querySelectorAll('a').forEach(function(a){
     a.addEventListener('click', function(){
       toggleOpen = false;
       navLinks.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.setAttribute('aria-label', 'Open navigation menu');
     });
   });
 
