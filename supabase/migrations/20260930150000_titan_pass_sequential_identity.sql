@@ -1,6 +1,7 @@
 -- ORANOS Titan Challenge review and approval only.
--- Titan Pass numbering, QR creation, card production, and delivery are handled manually by ORANOS.
--- Passing a challenge records the reviewed outcome only; it does not issue a Titan Pass.
+-- Titan Pass ID allocation, physical card production, QR credentials and delivery
+-- are intentionally handled manually by the ORANOS team.
+-- Preserve the existing finalize RPC signature; record outcome without issuing a pass.
 
 create or replace function public.titan_finalize_outcome(
   p_application_id uuid,
@@ -18,11 +19,8 @@ declare
   v_ready jsonb;
   v_outcome_id uuid;
 begin
-  select exists(
-    select 1 from public.profiles where id=auth.uid() and role='admin'
-  ) into v_admin;
-  if not v_admin then raise exception 'Admin access required'; end if;
-
+  select public.is_admin() into v_admin;
+  if not coalesce(v_admin,false) then raise exception 'Admin access required'; end if;
   if p_outcome not in ('passed','failed') then raise exception 'Invalid final outcome'; end if;
 
   select * into v_app from public.titan_applications
@@ -64,9 +62,7 @@ begin
   where id=p_application_id;
 
   return jsonb_build_object(
-    'ok',true,
-    'outcome_id',v_outcome_id,
-    'outcome',p_outcome,
+    'ok',true,'outcome_id',v_outcome_id,'outcome',p_outcome,
     'titan_pass_issued',false,
     'manual_issuance_required',p_outcome='passed',
     'cleanup_required',true
