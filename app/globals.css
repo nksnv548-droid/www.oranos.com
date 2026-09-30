@@ -136,3 +136,10 @@ body .community-list{font-size:1.05rem;line-height:1.75}
  .titan-ready span{font-size:8px;letter-spacing:.15em}
  .titan-ready strong{font-size:9px;letter-spacing:.08em}
 }
+
+/* Titan Pass identity panel */
+.titan-pass-identity{display:flex;flex-direction:column;gap:10px;width:min(100%,360px);margin:24px 0;padding:22px;border:1px solid rgba(212,175,55,.55);background:linear-gradient(135deg,rgba(212,175,55,.09),rgba(12,12,12,.7));}
+.titan-pass-identity strong{font-family:Cinzel,serif;font-size:clamp(23px,5vw,32px);letter-spacing:.1em;color:#e6cb83;overflow-wrap:anywhere}
+.titan-pass-identity .eyebrow{font-size:9px;letter-spacing:.18em;color:#aaa18c}
+.member-panel .member-status{white-space:normal;text-align:right}
+@media(max-width:600px){.member-panel .member-status{margin-top:18px;text-align:left}.titan-pass-identity{padding:18px}}
