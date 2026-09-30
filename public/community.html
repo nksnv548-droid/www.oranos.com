@@ -685,18 +685,36 @@ footer{
 .community-list li{margin:12px 0;line-height:1.75}
 .community-cta{text-align:center;padding:80px 24px}
 @media(max-width:700px){.community-grid{grid-template-columns:1fr}.community-card{padding:24px}}
+/* Responsive community identity and mobile layout */
+html{width:100%;max-width:100%;-webkit-text-size-adjust:100%;text-size-adjust:100%;overflow-x:clip}
+body{width:100%;max-width:100%;overflow-x:clip}
+nav .nav-logo{gap:.7rem}
+nav .nav-logo img{height:32px;width:auto;max-width:68px;object-fit:contain}
+nav .nav-logo span{font-family:var(--font-display);letter-spacing:.3em;font-size:.92rem;color:var(--marble)}
+@media(max-width:700px){
+ .section{padding:5.5rem 0}
+ .community-hero{min-height:70svh;padding:105px 20px 58px}
+ .community-hero .container{width:100%;padding:0}
+ .community-hero .hero-title{font-size:clamp(2rem,8vw,3rem);line-height:1.16;overflow-wrap:anywhere}
+ .community-hero .lede{font-size:clamp(1.05rem,4.7vw,1.3rem);line-height:1.55;padding:0 4px}
+ .eyebrow{font-size:.62rem;letter-spacing:.22em;margin-bottom:1rem}
+ .container{padding-inline:22px}
+ .community-cta{padding:58px 20px}
+}
+@media(max-width:380px){nav{padding-inline:18px}.nav-logo span{font-size:.78rem;letter-spacing:.2em}.container{padding-inline:18px}}
+
 </style>
 </head>
 <body>
 <div id="lightning"></div><div class="grain"></div><div class="vignette"></div><div id="particles"></div>
 <nav id="nav">
-<a href="index.html" class="nav-logo">ORANOS</a>
+<a href="index.html" class="nav-logo" aria-label="ORANOS Home"><img src="/oranos-crest.png" alt="ORANOS crest"><span>ORANOS</span></a>
 <button id="navToggle" class="nav-toggle" type="button" aria-label="Open navigation menu" aria-controls="navLinks" aria-expanded="false">
 <span></span><span></span><span></span>
 </button>
 <div id="navLinks" class="nav-links">
 <a href="index.html">Home</a><a href="#meaning">Our Community</a><a href="#founder">Founder & Vision</a><a href="#pillars">Four Pillars</a><a href="#journey">Your Journey</a><a href="#standard">The Standard</a>
-<a href="index.html#titan" class="nav-cta">Titan Challenge</a>
+
 </div>
 </nav>
 <main>
