@@ -732,6 +732,31 @@ body .desc{line-height:1.72}
 body .community-card p{line-height:1.72}
 body .community-list{font-size:1.05rem;line-height:1.75}
 .home-community-cta{display:flex;justify-content:center;margin-top:2rem}
+
+/* Unified ORANOS Community reading typography */
+main .about-body,
+main .desc,
+main .community-list,
+main .community-list li,
+main .community-card p{
+  font-family:var(--font-serif);
+  font-size:clamp(1.18rem, 1.8vw, 1.35rem);
+  line-height:1.72;
+  color:var(--marble-dim);
+}
+main .about-body{margin-top:1.8rem}
+main .desc{margin:1.2rem auto 0}
+main .community-card p{margin:0}
+@media(max-width:700px){
+  main .about-body,
+  main .desc,
+  main .community-list,
+  main .community-list li,
+  main .community-card p{
+    font-size:1.22rem;
+    line-height:1.72;
+  }
+}
 </style>
 </head>
 <body>
