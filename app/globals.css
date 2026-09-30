@@ -96,3 +96,31 @@ body{width:100%;min-width:0;overflow-x:clip}
  .trial-row{padding:20px 0}
  .titan-pledge{padding-bottom:48px}
 }
+/* Premium member access */
+.auth-panel{width:min(520px,100%);padding:34px 30px 30px}
+.auth-brand{display:flex;align-items:center;gap:12px;margin-bottom:28px}
+.auth-brand img{width:44px;height:44px;object-fit:contain}
+.auth-brand .gold{display:block;font-size:10px;letter-spacing:.24em}
+.auth-brand small{display:block;margin-top:5px;color:#f6f1e7;font-family:Cinzel,serif;font-size:12px;letter-spacing:.18em}
+.auth-panel h1{font-family:Cinzel,serif;font-size:clamp(31px,8vw,46px);font-weight:500;letter-spacing:-.025em;line-height:1.05;margin:0 0 12px}
+.auth-panel>.muted{font-family:Cormorant Garamond,serif;font-size:20px;line-height:1.4;color:#bcb5a8}
+.auth-mode{display:grid;grid-template-columns:1fr 1fr;gap:2px;padding:3px;margin:28px 0 14px;border:1px solid #34353a;border-radius:11px;background:#111216}
+.mode-button{min-height:42px;border:0;border-radius:8px;background:transparent;color:#97938c;font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+.mode-button.active{background:#24262b;color:#f7f0df;box-shadow:inset 0 0 0 1px #3c3d42}
+.auth-panel form label{font-size:11px;letter-spacing:.08em;color:#c9c3b8}
+.auth-panel input{font-family:Poppins,sans-serif;font-size:14px}
+.google-action{min-height:50px!important;border:1px solid #4a4740!important;border-radius:10px!important;background:#f3efe5!important;color:#151515!important;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+.google-action:hover{background:#fffaf0!important;border-color:#6a655a!important}
+.google-glyph{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;font-family:Arial,sans-serif;font-size:17px;font-weight:700}
+.auth-divider{margin:20px 0 14px}
+.auth-divider span{font-size:8px;color:#827d72}
+.auth-message{margin-top:14px;color:#d8b86f;font-size:12px;line-height:1.6}
+.auth-back{color:#c8bfae;text-decoration:none;font-size:12px}
+.auth-back:hover{color:#f4ead8}
+@media(max-width:520px){.auth-panel{padding:28px 22px 24px}.auth-brand{margin-bottom:22px}.auth-mode{margin-top:22px}}
+/* Community body copy uses one consistent reading font */
+body .desc,body .community-card p,body .community-list,body .community-list li{font-family:var(--font-serif)}
+body .desc{line-height:1.72}
+body .community-card p{line-height:1.72}
+body .community-list{font-size:1.05rem;line-height:1.75}
+.home-community-cta{display:flex;justify-content:center;margin-top:2rem}
