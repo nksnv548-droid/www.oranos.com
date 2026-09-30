@@ -14,7 +14,7 @@ const applicationLabels: Record<string, string> = {
   in_progress: "Challenge in progress",
   submitted: "Challenge submitted",
   under_review: "Under review",
-  passed: "Challenge passed",
+  passed: "Challenge approved — Titan Pass issued separately by ORANOS",
   reattempt: "Reattempt available",
   rejected: "Application not approved",
   failed: "Challenge not passed",
