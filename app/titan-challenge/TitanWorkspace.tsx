@@ -346,8 +346,8 @@ export default function TitanWorkspace() {
       setMessage(`GPS distance is ${Math.round(distance)} m. The Titan standard requires 2,000 m before you can submit.`);
       return;
     }
-    if (elapsed > 840 || elapsed <= 0) {
-      setMessage("The 2 km run must be completed within 14:00.");
+    if (elapsed >= 840 || elapsed <= 0) {
+      setMessage("The 2 km run must be completed in under 14:00.");
       return;
     }
     setBusy(true);
