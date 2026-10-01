@@ -230,7 +230,7 @@ export default function TitanWorkspace() {
         application_id: applicationId,
         video_path: path,
         video_duration_seconds: mediaMeta.duration,
-        integrity_status: "submitted_for_review",
+        integrity_status: "review",
         integrity_signals: {
           source: "member_camera_or_upload",
           submitted_at_client: new Date().toISOString(),
@@ -242,7 +242,7 @@ export default function TitanWorkspace() {
           platform: navigator.platform,
           recorded_in_browser: file.name.endsWith(".webm"),
         },
-        status: "pending_review",
+        status: "under_review",
       };
 
       const { error: submissionError } = await supabase.from("titan_submissions").insert(payload);
@@ -376,7 +376,7 @@ export default function TitanWorkspace() {
         gps_distance_meters: Math.round(distance),
         gps_elapsed_seconds: elapsed,
         gps_route: route,
-        integrity_status: gpsSignals.length ? "review_required" : "submitted_for_review",
+        integrity_status: gpsSignals.length ? "review_required" : "review",
         integrity_signals: {
           source: "browser_geolocation",
           gps_point_count: route.length,
@@ -386,7 +386,7 @@ export default function TitanWorkspace() {
           high_accuracy_requested: true,
         },
         client_metadata: { user_agent: navigator.userAgent, platform: navigator.platform },
-        status: "pending_review",
+        status: "under_review",
       });
       if (submissionError) throw submissionError;
       await supabase.from("titan_sessions").update({ status: "submitted", ended_at: new Date().toISOString() }).eq("id", session.id);
