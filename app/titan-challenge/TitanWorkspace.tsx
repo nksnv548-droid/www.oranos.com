@@ -197,7 +197,7 @@ export default function TitanWorkspace() {
           application_id: applicationId,
           user_id: userId,
           challenge_id: challenge.id,
-          challenge_code: challenge.slug,
+          challenge_code: `${challenge.slug}:${crypto.randomUUID()}`,
           status: "active",
           started_at: new Date().toISOString(),
         })
@@ -359,7 +359,7 @@ export default function TitanWorkspace() {
           application_id: applicationId,
           user_id: userId,
           challenge_id: challenge.id,
-          challenge_code: challenge.slug,
+          challenge_code: `${challenge.slug}:${crypto.randomUUID()}`,
           status: "active",
           started_at: new Date(Date.now() - elapsed * 1000).toISOString(),
         })
