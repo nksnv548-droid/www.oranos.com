@@ -632,3 +632,84 @@ body .community-list{font-size:1.05rem;line-height:1.75}
 .oternal-download-disabled{margin-top:25px;opacity:.56;cursor:not-allowed}
 @media(max-width:900px){.oternal-feature-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.oternal-preview-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:560px){.oternal-feature-grid,.oternal-preview-grid{grid-template-columns:1fr}.oternal-feature-grid article{min-height:170px}.oternal-preview-slot{min-height:190px}.oternal-hero-art{min-height:285px}.oternal-art-placeholder{font-size:112px}}
+
+
+/* ============================================
+   PHASE 02 — UI / MOBILE AUDIT FIXES
+   Small-screen safety, touch targets, focus states,
+   and evidence/admin layout corrections.
+   ============================================ */
+html{width:100%;min-width:0;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{width:100%;min-width:0}
+a,button,input,textarea,select{touch-action:manipulation}
+:focus-visible{outline:2px solid #d6b36a;outline-offset:3px}
+
+@media(max-width:600px){
+  .shell{
+    padding-top:max(16px,env(safe-area-inset-top));
+    padding-right:max(16px,env(safe-area-inset-right));
+    padding-bottom:max(16px,env(safe-area-inset-bottom));
+    padding-left:max(16px,env(safe-area-inset-left));
+  }
+  .panel{padding:24px 20px}
+  .auth-panel input{min-height:48px;font-size:16px}
+  .auth-panel form .action{width:100%;min-height:48px}
+  .auth-mode .mode-button{min-height:44px}
+
+  .dashboard{padding-inline:18px}
+  .dash-header{height:auto;min-height:76px;padding:16px 0;gap:12px}
+  .brand{min-width:0;max-width:58%;gap:8px}
+  .brand>span{min-width:0;overflow-wrap:anywhere}
+  .header-user{min-width:0;flex:1;justify-content:flex-end;gap:10px}
+  .quiet-button{min-height:44px;padding:10px 0;white-space:nowrap}
+  .gold-button{min-height:46px;max-width:100%}
+
+  .recording-bar{align-items:flex-start;flex-wrap:wrap}
+  .recording-bar .action{width:auto!important;flex:0 0 auto;min-height:44px}
+}
+
+@media(max-width:420px){
+  .dashboard{padding-inline:16px}
+  .brand{font-size:11px;letter-spacing:.1em}
+  .brand small{font-size:8px}
+  .header-user{font-size:10px}
+
+  .welcome-actions,
+  .titan-hero-actions,
+  .titan-actions{align-items:stretch;flex-direction:column}
+  .welcome-actions .gold-button,
+  .welcome-actions .text-link,
+  .titan-hero-actions .gold-button,
+  .titan-hero-actions .text-link,
+  .titan-actions .text-link{width:100%;justify-content:center;text-align:center}
+
+  .gps-stats{grid-template-columns:1fr}
+  .admin-meta-grid{grid-template-columns:1fr}
+}
+
+/* OTERNAL small-screen overflow protection */
+.oternal-page *{min-width:0}
+.oternal-hero-art{min-width:0;overflow:hidden}
+.oternal-art-placeholder{
+  max-width:100%;
+  padding:0 16px;
+  text-align:center;
+  overflow-wrap:anywhere;
+}
+@media(max-width:560px){
+  .oternal-hero h1{
+    font-size:clamp(56px,18vw,82px);
+    line-height:.82;
+  }
+  .oternal-button{width:100%;justify-content:center}
+  .oternal-status{width:100%;justify-content:center}
+  .oternal-section-heading p{font-size:18px}
+  .oternal-art-placeholder{
+    font-size:clamp(72px,25vw,112px);
+    letter-spacing:-.1em;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .oternal-hero-art:after{animation:none}
+  .titan-mote,.titan-grain{animation:none}
+}
