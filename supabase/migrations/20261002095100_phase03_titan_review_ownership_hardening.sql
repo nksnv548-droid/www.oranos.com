@@ -170,6 +170,12 @@ create policy passes_admin_update
   using ((select public.is_admin()))
   with check ((select public.is_admin()));
 
+-- Allow genuine reattempts: the evidence item is unique per session, not per
+-- application/challenge. A reattempt creates a new session and a new submission.
+drop index if exists public.titan_submissions_one_challenge_per_attempt;
+create index if not exists titan_submissions_application_challenge_created_idx
+  on public.titan_submissions(application_id, challenge_id, created_at desc);
+
 -- One RPC makes a review decision and its audit row one database transaction.
 -- The row lock prevents two admins from deciding the same evidence item concurrently.
 create or replace function public.titan_review_submission(
