@@ -376,7 +376,7 @@ export default function TitanWorkspace() {
         gps_distance_meters: Math.round(distance),
         gps_elapsed_seconds: elapsed,
         gps_route: route,
-        integrity_status: gpsSignals.length ? "review_required" : "review",
+        integrity_status: "review",
         integrity_signals: {
           source: "browser_geolocation",
           gps_point_count: route.length,
