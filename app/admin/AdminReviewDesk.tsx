@@ -85,22 +85,11 @@ export default function AdminReviewDesk() {
     setBusy(true);
     setMessage("");
     try {
-      const { data: auth } = await supabase.auth.getUser();
-      if (!auth.user) throw new Error("Admin session expired.");
       const reviewerNotes = notes[row.id]?.trim() || null;
-      const { error: updateError } = await supabase.from("titan_submissions").update({
-        status: decision,
-        reviewer_notes: reviewerNotes,
-        reviewed_by: auth.user.id,
-        reviewed_at: new Date().toISOString(),
-      }).eq("id", row.id);
-      if (updateError) throw updateError;
-
-      const { error: reviewError } = await supabase.from("titan_reviews").insert({
-        submission_id: row.id,
-        reviewer_id: auth.user.id,
-        decision,
-        notes: reviewerNotes,
+      const { error: reviewError } = await supabase.rpc("titan_review_submission", {
+        p_submission_id: row.id,
+        p_decision: decision,
+        p_reviewer_notes: reviewerNotes,
       });
       if (reviewError) throw reviewError;
 
