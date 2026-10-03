@@ -1,12 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
-
 export default function AccountError({ reset }: { error: Error & { digest?: string }; reset: () => void }) {
-  useEffect(() => {
-    // Keep this boundary intentionally quiet; detailed errors stay server-side.
-  }, []);
-
   return (
     <main className="dashboard">
       <section className="welcome">
