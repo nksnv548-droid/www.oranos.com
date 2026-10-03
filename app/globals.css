@@ -713,3 +713,62 @@ a,button,input,textarea,select{touch-action:manipulation}
   .oternal-hero-art:after{animation:none}
   .titan-mote,.titan-grain{animation:none}
 }
+
+
+/* PHASE 04 — My ORANOS member dashboard progress surfaces */
+.account-logo{width:28px;height:28px;object-fit:contain}
+.member-dashboard-status-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:28px 0 70px}
+.member-status-card{min-width:0;padding:20px;border:1px solid rgba(22,40,67,.14);background:rgba(255,255,255,.68)}
+.member-status-card .eyebrow{display:block;color:#7c8799;font-size:9px;letter-spacing:.16em}
+.member-status-card strong{display:block;margin:14px 0 8px;color:#17243b;font-size:clamp(16px,2vw,22px);line-height:1.2;text-transform:capitalize;overflow-wrap:anywhere}
+.member-status-card p{margin:0;color:#748096;font-size:12px;line-height:1.5}
+.dashboard-alert{margin:-36px 0 54px;padding:18px 20px;border:1px solid rgba(177,133,53,.3);background:rgba(214,179,106,.08)}
+.dashboard-alert .eyebrow{color:#9a7433;font-size:9px;letter-spacing:.16em}
+.dashboard-alert p{margin:8px 0 0;color:#596579;font-size:13px;line-height:1.55}
+.member-pillar-state{margin-top:20px;padding-top:12px;border-top:1px solid rgba(22,40,67,.12);color:#8a744e;font-size:10px;letter-spacing:.1em;text-transform:uppercase}
+.member-dashboard-panel{min-width:0;margin:34px 0;padding:clamp(22px,4vw,42px);border:1px solid rgba(22,40,67,.15);background:rgba(255,255,255,.72)}
+.member-dashboard-panel-head{display:flex;align-items:end;justify-content:space-between;gap:18px;margin-bottom:28px}
+.member-dashboard-panel-head h2{margin:10px 0 0;color:#17243b;font-size:clamp(30px,4.4vw,52px);font-weight:500;letter-spacing:-.045em;line-height:1}
+.member-dashboard-panel-head h2 em{font-family:Georgia,serif;font-weight:400}
+.member-dashboard-panel-head .eyebrow{color:#8a744e;font-size:9px;letter-spacing:.16em}
+.member-dashboard-panel .section-index{color:#8a744e;font-size:10px;letter-spacing:.12em;white-space:nowrap}
+.member-empty{padding:26px 0;color:#748096}
+.member-empty h3{margin:0 0 8px;color:#17243b;font-size:20px;font-weight:500}
+.member-empty p{max-width:560px;margin:0 0 18px;font-size:13px;line-height:1.6}
+.member-empty.compact{padding:10px 0}
+.member-challenge-list,.member-history-list{border-top:1px solid rgba(22,40,67,.12)}
+.member-challenge-row,.member-history-row{display:grid;grid-template-columns:48px minmax(0,1fr) minmax(170px,.8fr);gap:18px;align-items:start;padding:20px 0;border-bottom:1px solid rgba(22,40,67,.12)}
+.member-challenge-index{color:#a48b60;font-family:Georgia,serif;font-size:22px}
+.member-challenge-main h3{margin:7px 0;color:#17243b;font-size:17px;font-weight:500}
+.member-challenge-main p{margin:0;color:#748096;font-size:12px}
+.member-challenge-main .eyebrow,.member-history-row .eyebrow{color:#8a744e;font-size:8px;letter-spacing:.14em}
+.member-challenge-review,.member-history-row>div:last-child{display:flex;flex-direction:column;align-items:flex-start;gap:7px;min-width:0}
+.member-challenge-review small,.member-history-row small{color:#7d899a;font-size:10px;line-height:1.5}
+.member-challenge-review p,.member-history-row p{margin:2px 0 0;color:#596579;font-size:12px;line-height:1.5;overflow-wrap:anywhere}
+.evidence-status{display:inline-flex;align-items:center;max-width:100%;padding:6px 9px;border:1px solid rgba(22,40,67,.15);color:#5e6b7e;font-size:9px;letter-spacing:.08em;text-transform:uppercase;overflow-wrap:anywhere}
+.status-approved{border-color:rgba(61,122,89,.28);color:#397752;background:rgba(61,122,89,.06)}
+.status-reattempt{border-color:rgba(176,132,54,.35);color:#96702f;background:rgba(176,132,54,.06)}
+.status-rejected,.status-suspicious{border-color:rgba(161,77,77,.25);color:#a14d4d;background:rgba(161,77,77,.05)}
+.status-under_review{color:#526f9e;background:rgba(82,111,158,.06)}
+.member-warning{color:#a14d4d!important}
+.member-dashboard-two-col{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;align-items:stretch}
+.member-dashboard-two-col .member-dashboard-panel{margin:18px 0}
+.member-day-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.member-day-card{display:flex;min-width:0;flex-direction:column;gap:9px;padding:13px 10px;border:1px solid rgba(22,40,67,.13);background:rgba(255,255,255,.7)}
+.member-day-card>span{color:#8a744e;font-size:8px;letter-spacing:.12em}
+.member-day-card strong{color:#6f7b8d;font-size:9px;letter-spacing:.06em}
+.member-day-card small{color:#8792a2;font-size:9px}
+.member-day-card.is-complete{border-color:rgba(61,122,89,.3);background:rgba(61,122,89,.045)}
+.member-day-card.is-complete strong{color:#397752}
+.member-declaration-status strong{display:block;color:#17243b;font-size:16px;text-transform:capitalize}
+.member-declaration-status p{color:#748096;font-size:12px;line-height:1.6}
+.member-declaration-status small{color:#8792a2;font-size:10px}
+.member-history-row{grid-template-columns:minmax(0,1fr) minmax(180px,.75fr)}
+.member-history-row strong{display:block;margin:7px 0;color:#17243b;font-size:14px;font-weight:500}
+.member-panel{display:flex;justify-content:space-between;gap:28px;align-items:center}
+.titan-pass-identity{display:flex;flex-direction:column;gap:8px;margin:22px 0;padding:18px;border:1px solid rgba(214,179,106,.4);max-width:280px}
+.titan-pass-identity strong{font-family:Georgia,serif;font-size:26px;letter-spacing:.12em;color:#17243b}
+.titan-pass-identity .eyebrow{font-size:8px;letter-spacing:.15em;color:#8a744e}
+@media(max-width:900px){.member-dashboard-status-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.member-dashboard-two-col{grid-template-columns:1fr}.member-dashboard-two-col .member-dashboard-panel{margin:14px 0}}
+@media(max-width:600px){.member-dashboard-status-grid{gap:8px;margin:20px 0 48px}.member-status-card{padding:14px}.member-status-card strong{font-size:16px}.member-status-card p{font-size:11px}.member-dashboard-panel{padding:20px 16px;margin:22px 0}.member-challenge-row{grid-template-columns:30px minmax(0,1fr);gap:10px}.member-challenge-review{grid-column:2}.member-history-row{grid-template-columns:1fr;gap:14px}.member-day-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.member-panel{align-items:flex-start;flex-direction:column}.member-dashboard-panel-head{align-items:flex-start}.member-dashboard-panel-head h2{font-size:32px}}
+@media(prefers-reduced-motion:reduce){.member-dashboard-panel *{scroll-behavior:auto}}
