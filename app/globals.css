@@ -789,3 +789,95 @@ a,button,input,textarea,select{touch-action:manipulation}
 .titan-checkin-pillar-grid button.checkin-done{border-color:rgba(61,122,89,.35);background:rgba(61,122,89,.05)}
 .titan-checkin-pillar-grid button.checkin-done>span,.titan-checkin-pillar-grid button.checkin-done small{color:#397752}
 @media(max-width:600px){.titan-day-tabs{gap:4px}.titan-day-tabs button{min-height:44px;font-size:9px}.titan-checkin-pillar-grid{grid-template-columns:1fr}.titan-checkin-pillar-grid button{min-height:62px}}
+
+
+/* PHASE 06 — My ORANOS Admin command desk */
+.admin-review-title-row{display:flex;align-items:flex-end;justify-content:space-between;gap:24px}
+.admin-live-badge{display:inline-flex;align-items:center;gap:8px;padding:9px 11px;border:1px solid rgba(214,179,106,.35);color:#c9b47d;font-size:8px;letter-spacing:.14em;white-space:nowrap}
+.admin-live-badge span{width:6px;height:6px;border-radius:50%;background:#8ac58f;box-shadow:0 0 0 4px rgba(138,197,143,.1)}
+.admin-stat-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:28px 0 18px}
+.admin-stat-card{padding:18px;border:1px solid #343434;background:#111214}
+.admin-stat-card span{display:block;color:#888378;font-size:8px;letter-spacing:.14em}
+.admin-stat-card strong{display:block;margin-top:9px;color:#e4d6b4;font-family:Cormorant Garamond,serif;font-size:30px;font-weight:500}
+.admin-command-grid{display:grid;grid-template-columns:minmax(300px,.75fr) minmax(0,1.25fr);gap:14px}
+.admin-panel{min-width:0;padding:22px;border:1px solid #343434;background:linear-gradient(145deg,#171819,#0d0e0f)}
+.admin-panel-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:20px}
+.admin-panel-head h3{margin:8px 0 0;font-family:Cinzel,serif;font-size:23px;font-weight:500}
+.admin-panel-head h3 em{font-family:Cormorant Garamond,serif;color:#d3b16b;font-weight:500}
+.admin-panel-head>span{color:#89847a;font-size:9px;letter-spacing:.08em;text-align:right}
+.admin-filter-bar{display:grid;grid-template-columns:1fr 150px;gap:8px;margin-bottom:12px}
+.admin-filter-bar input,.admin-filter-bar select{width:100%;min-height:44px;padding:10px 12px;border:1px solid #3d3b36;background:#0e0f10;color:#eee8dc;font-size:11px}
+.admin-member-list{display:grid;gap:5px;max-height:600px;overflow:auto}
+.admin-member-row{width:100%;display:grid;grid-template-columns:38px minmax(0,1fr) auto;align-items:center;gap:10px;padding:11px;border:1px solid transparent;background:#101112;color:#eee8dc;text-align:left;cursor:pointer}
+.admin-member-row:hover,.admin-member-row.selected{border-color:rgba(214,179,106,.4);background:#171714}
+.admin-member-mark{display:grid;place-items:center;width:34px;height:34px;border:1px solid #5b5039;color:#d5b56f;font-size:10px}
+.admin-member-main{min-width:0}
+.admin-member-main strong{display:block;font-size:11px;font-weight:500;overflow-wrap:anywhere}
+.admin-member-main small,.admin-member-status small{display:block;margin-top:4px;color:#77736b;font-size:8px;overflow-wrap:anywhere}
+.admin-member-status{display:flex;flex-direction:column;align-items:flex-end;gap:3px;min-width:0}
+.admin-profile-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.admin-info{min-width:0;padding:12px;border:1px solid #2e2e2e;background:#101112}
+.admin-info span{display:block;margin-bottom:7px;color:#817c73;font-size:8px;letter-spacing:.13em}
+.admin-info strong{display:block;color:#e3ddd1;font-size:11px;font-weight:500;overflow-wrap:anywhere}
+.admin-info strong.mono{font-family:monospace;font-size:9px;color:#aaa49a}
+.admin-readiness-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-top:10px}
+.admin-readiness-item{padding:12px;border:1px solid #302f2c;background:#101112}
+.admin-readiness-item span{display:block;color:#817c73;font-size:7px;letter-spacing:.12em}
+.admin-readiness-item strong{display:block;margin-top:7px;color:#aaa49a;font-size:9px;line-height:1.4}
+.admin-readiness-item.ok{border-color:rgba(87,126,92,.45)}
+.admin-readiness-item.ok strong{color:#a9d4ae}
+.admin-review-panel,.admin-final-panel{margin-top:14px}
+.admin-two-panel-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.admin-declaration-question{color:#c8c0b2;font-family:Cormorant Garamond,serif;font-size:19px;line-height:1.5}
+.admin-checkin-list,.admin-history-list{display:grid;gap:5px}
+.admin-checkin-row{display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px;padding:11px;border:1px solid #2e2e2e;background:#101112}
+.admin-checkin-row strong{display:block;color:#ddd6c8;font-size:9px;letter-spacing:.08em}
+.admin-checkin-row small{display:block;margin-top:5px;color:#77736b;font-size:8px}
+.admin-checkin-actions{display:flex;align-items:center;gap:5px;flex-wrap:wrap;justify-content:flex-end}
+.admin-checkin-actions button{min-height:34px;padding:7px 9px;border:1px solid #49443a;background:#191a1b;color:#cfc7b8;font-size:8px;cursor:pointer}
+.checkin-review-status{padding:5px 7px;border:1px solid #45413a;color:#a9a49b;font-size:7px;text-transform:uppercase}
+.review-accepted{border-color:#54765d;color:#a9d4ae}.review-flagged{border-color:#927044;color:#e8c58c}.review-rejected{border-color:#854d4d;color:#e3a4a4}
+.admin-readiness-box{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:16px;border:1px solid #3a352b;background:rgba(214,179,106,.05)}
+.admin-readiness-label{margin:0;color:#9a8a68;font-size:8px;letter-spacing:.14em}
+.admin-readiness-box strong{display:block;margin-top:6px;color:#e3d6b9;font-family:Cormorant Garamond,serif;font-size:20px;font-weight:500}
+.admin-readiness-box small{display:block;margin-top:5px;color:#817b70;font-size:9px;line-height:1.5}
+.admin-validate-button{min-height:42px;padding:10px 14px;border:1px solid #806d48;background:#d0ae68;color:#111;font-size:9px;font-weight:700;cursor:pointer}
+.admin-criteria-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin:10px 0}
+.admin-criteria{padding:11px;border:1px solid #302f2c;background:#101112}
+.admin-criteria span{display:block;color:#817c73;font-size:7px;letter-spacing:.1em}
+.admin-criteria strong{display:block;margin-top:6px;color:#a9a49b;font-size:10px}
+.admin-criteria.ok{border-color:rgba(87,126,92,.45)}.admin-criteria.ok strong{color:#a9d4ae}
+.admin-final-panel>textarea{display:block;width:100%;margin:12px 0;padding:12px;background:#101112;border:1px solid #49443a;color:#f6f1e7;resize:vertical;font:12px Poppins,sans-serif}
+.admin-final-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.admin-final-actions button{min-height:48px;padding:12px;border:1px solid #4a463d;background:#191a1b;color:#ddd;font-size:10px;cursor:pointer}
+.admin-final-actions .review-approve{background:#d0ae68;color:#111;border-color:#d0ae68;font-weight:700}
+.admin-final-actions button:disabled,.admin-validate-button:disabled{opacity:.4;cursor:wait}
+.admin-history-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;padding:13px;border:1px solid #2e2e2e;background:#101112}
+.admin-history-row>div:first-child{min-width:0}
+.admin-history-row strong{display:block;margin:5px 0;color:#ddd6c8;font-size:11px;font-weight:500}
+.admin-history-row small{color:#77736b;font-size:8px}
+.admin-history-row>p{grid-column:1/-1;margin:0;color:#918b82;font-size:9px;line-height:1.5}
+@media(max-width:900px){
+ .admin-command-grid,.admin-two-panel-grid{grid-template-columns:1fr}
+ .admin-stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:600px){
+ .admin-review-title-row{align-items:flex-start;flex-direction:column}
+ .admin-live-badge{width:max-content}
+ .admin-panel{padding:16px}
+ .admin-filter-bar{grid-template-columns:1fr}
+ .admin-profile-grid,.admin-readiness-strip,.admin-criteria-grid{grid-template-columns:1fr 1fr}
+ .admin-readiness-box{align-items:stretch;flex-direction:column}
+ .admin-validate-button{width:100%}
+ .admin-checkin-row{grid-template-columns:1fr}
+ .admin-checkin-actions{justify-content:flex-start}
+ .admin-final-actions{grid-template-columns:1fr}
+ .admin-history-row{grid-template-columns:1fr}
+}
+@media(max-width:420px){
+ .admin-stat-grid,.admin-profile-grid,.admin-readiness-strip,.admin-criteria-grid{grid-template-columns:1fr}
+ .admin-member-row{grid-template-columns:34px minmax(0,1fr)}
+ .admin-member-status{grid-column:2;align-items:flex-start}
+ .admin-panel-head{align-items:flex-start;flex-direction:column}
+ .admin-panel-head>span{text-align:left}
+}
