@@ -881,3 +881,12 @@ a,button,input,textarea,select{touch-action:manipulation}
  .admin-panel-head{align-items:flex-start;flex-direction:column}
  .admin-panel-head>span{text-align:left}
 }
+
+
+/* PHASE 07 — manual Titan Pass */
+.admin-pass-panel{margin-top:14px}
+.admin-pass-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.admin-pass-grid input{width:100%;padding:10px;background:#0e0f10;border:1px solid #49443a;color:#eee8dc;font:11px monospace}
+.admin-pass-grid input:disabled{opacity:.65}
+.admin-pass-panel>.admin-validate-button{width:100%}
+@media(max-width:600px){.admin-pass-grid{grid-template-columns:1fr}}
