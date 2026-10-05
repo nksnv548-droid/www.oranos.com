@@ -59,6 +59,9 @@ declare
   v_app public.titan_applications%rowtype;
   v_fitness_count integer;
   v_days jsonb;
+  v_day_count integer;
+  v_first_date date;
+  v_last_date date;
   v_decl boolean;
   v_ready boolean;
 begin
@@ -76,6 +79,31 @@ begin
   from public.titan_submissions s
   where s.application_id = p_application_id
     and s.status = 'approved';
+
+  select count(*) into v_day_count
+  from (
+    select day_number, min(checkin_date) as checkin_date
+    from public.titan_daily_checkins
+    where application_id = p_application_id
+      and completed = true
+      and reviewer_status in ('submitted','accepted')
+    group by day_number
+    having count(distinct pillar_code) = 3
+  ) d
+  where day_number between 1 and 7;
+
+  select min(checkin_date), max(checkin_date)
+    into v_first_date, v_last_date
+  from (
+    select day_number, min(checkin_date) as checkin_date
+    from public.titan_daily_checkins
+    where application_id = p_application_id
+      and completed = true
+      and reviewer_status in ('submitted','accepted')
+    group by day_number
+    having count(distinct pillar_code) = 3
+  ) ordered_days
+  where day_number between 1 and 7;
 
   select coalesce(
     jsonb_agg(
@@ -107,7 +135,9 @@ begin
 
   v_ready :=
     v_fitness_count >= 5
-    and jsonb_array_length(v_days) = 7
+    and v_day_count = 7
+    and v_first_date is not null
+    and v_last_date = v_first_date + 6
     and v_decl;
 
   return jsonb_build_object(
