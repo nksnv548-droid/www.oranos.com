@@ -46,8 +46,8 @@ export default function OternalPage() {
       </div>
       <div className="oternal-hero-art" aria-label="Official OTERNAL visual will be added when the approved brand asset is ready">
         <span className="oternal-art-index">OTERNAL / OFFICIAL VISUAL</span>
-        <div className="oternal-art-placeholder">OTERNAL</div>
-        <span className="oternal-art-caption">APPROVED BRAND ARTWORK<br/>TO BE ADDED</span>
+        <div className="oternal-art-placeholder" aria-label="OTERNAL official visual placeholder">OTERNAL</div>
+        <span className="oternal-art-caption">AI MENTOR / ORANOS<br/>APP IN DEVELOPMENT</span>
       </div>
     </section>
 
@@ -104,7 +104,7 @@ export default function OternalPage() {
     <section className="oternal-section oternal-preview">
       <p className="oternal-section-index">07 / THE APP EXPERIENCE</p>
       <div className="oternal-section-heading"><h2>SEE OTERNAL IN ACTION.</h2><p>Only genuine OTERNAL app screenshots will be placed here. No sample or unrelated app images.</p></div>
-      <div className="oternal-preview-grid">{imageSlots.map((label,index)=><div className="oternal-preview-slot" key={label}><span>SCREEN {String(index+1).padStart(2,"0")}</span><strong>{label}</strong><small>OFFICIAL APP IMAGE TO BE ADDED</small></div>)}</div>
+      <div className="oternal-preview-grid">{imageSlots.map((label,index)=><div className="oternal-preview-slot" key={label}><span>SCREEN {String(index+1).padStart(2,"0")}</span><strong>{label}</strong><small>OFFICIAL APP SCREENSHOTS WILL APPEAR AFTER THE ANDROID BUILD IS READY</small></div>)}</div>
     </section>
 
     <section id="app" className="oternal-section oternal-cta-section">
