@@ -202,6 +202,7 @@ export default async function AccountPage() {
 
   const currentPillars = (pillarRows || []) as PillarProgress[];
   const memberApplicationStatus = application ? (applicationLabels[application.status] || statusLabel(application.status)) : null;
+  const outcomeValue = typeof outcome?.outcome === "string" ? outcome.outcome : null;
   const passActive = pass?.status === "active";
   const passStatus = passActive
     ? "ACTIVE"
@@ -210,7 +211,6 @@ export default async function AccountPage() {
       : outcomeValue === "passed"
         ? "MANUAL ISSUANCE PENDING"
         : "NOT ISSUED";
-  const outcomeValue = typeof outcome?.outcome === "string" ? outcome.outcome : null;
   const hasDataError = dataErrors.length > 0;
 
   return (
