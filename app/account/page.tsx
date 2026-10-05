@@ -203,6 +203,13 @@ export default async function AccountPage() {
   const currentPillars = (pillarRows || []) as PillarProgress[];
   const memberApplicationStatus = application ? (applicationLabels[application.status] || statusLabel(application.status)) : null;
   const passActive = pass?.status === "active";
+  const passStatus = passActive
+    ? "ACTIVE"
+    : pass?.status === "revoked"
+      ? "REVOKED"
+      : outcomeValue === "passed"
+        ? "MANUAL ISSUANCE PENDING"
+        : "NOT ISSUED";
   const outcomeValue = typeof outcome?.outcome === "string" ? outcome.outcome : null;
   const hasDataError = dataErrors.length > 0;
 
@@ -247,8 +254,8 @@ export default async function AccountPage() {
         </article>
         <article className="member-status-card">
           <span className="eyebrow">TITAN PASS</span>
-          <strong>{passActive ? "ACTIVE" : pass?.status === "revoked" ? "REVOKED" : "NOT ISSUED"}</strong>
-          <p>{passActive ? `Titan ID ${pass.titan_id}` : "Issuance is handled separately by ORANOS."}</p>
+          <strong>{passStatus}</strong>
+          <p>{passActive ? `Titan ID ${pass.titan_id}` : outcomeValue === "passed" ? "Your Titan Pass is awaiting manual ORANOS issuance." : "Issuance is handled separately by ORANOS."}</p>
         </article>
       </section>
 
