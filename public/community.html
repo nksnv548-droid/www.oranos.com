@@ -465,6 +465,32 @@ nav.scrolled{
 @media (max-width:700px){.benefits-grid{grid-template-columns:1fr;gap:0;}}
 
 /* ============================================
+   MEMBER ACCESS — community gateway
+   ============================================ */
+#member-access{background:linear-gradient(180deg,var(--bg) 0%,#080806 100%)}
+.member-access-shell{display:grid;grid-template-columns:.85fr 1.15fr;gap:3rem;align-items:stretch}
+.member-access-intro{display:flex;flex-direction:column;justify-content:center}
+.member-access-intro h2{font-size:clamp(2rem,4vw,3.4rem);color:var(--marble);margin-bottom:1.2rem}
+.member-access-intro h2 em{color:var(--gold-soft);font-weight:600}
+.member-access-intro .desc{max-width:620px}
+.member-access-actions{display:flex;gap:.9rem;flex-wrap:wrap;margin-top:2rem}
+.member-access-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.member-access-card{background:var(--bg);padding:2rem;min-height:180px;display:flex;flex-direction:column;justify-content:space-between;transition:background .35s,transform .35s var(--ease)}
+.member-access-card:hover{background:#0d0c0a;transform:translateY(-2px)}
+.member-access-card .pillar-num{margin-bottom:1rem}
+.member-access-card h3{font-size:1rem;color:var(--marble);letter-spacing:.06em;margin-bottom:.65rem}
+.member-access-card p{font-family:var(--font-serif);font-size:1.08rem;line-height:1.6;color:var(--secondary)}
+.member-access-card a{display:inline-flex;align-items:center;gap:.45rem;margin-top:1rem;color:var(--gold-soft);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;font-weight:600}
+.member-access-note{margin-top:1.4rem;font-size:.72rem;line-height:1.7;color:#777267;max-width:620px}
+@media(max-width:900px){
+  .member-access-shell{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .member-access-grid{grid-template-columns:1fr}
+  .member-access-card{min-height:160px;padding:1.5rem}
+}
+
+/* ============================================
    TITAN CHALLENGE — full-screen cinematic, one statue
    ============================================ */
 #titan{
@@ -767,8 +793,8 @@ main .community-card p{margin:0}
 <span></span><span></span><span></span>
 </button>
 <div id="navLinks" class="nav-links">
-<a href="index.html">Home</a><a href="#meaning">Our Community</a><a href="#founder">Founder & Vision</a><a href="#pillars">Four Pillars</a><a href="#journey">Your Journey</a><a href="#standard">The Standard</a>
-
+<a href="index.html">Home</a><a href="#meaning">Our Community</a><a href="#founder">Founder & Vision</a><a href="#pillars">Four Pillars</a><a href="#journey">Your Journey</a><a href="#standard">The Standard</a><a href="#member-access">Member Access</a>
+<a href="/account" class="nav-cta">MY ORANOS ↗</a>
 </div>
 </nav>
 <main>
@@ -846,6 +872,40 @@ main .community-card p{margin:0}
 </div>
 </div>
 </section>
+<section id="member-access" class="section">
+<div class="container">
+<div class="member-access-shell">
+<div class="member-access-intro">
+<span class="eyebrow reveal">Your ORANOS Access</span>
+<h2 class="reveal">ONE COMMUNITY.<br><em>YOUR NEXT STEP.</em></h2>
+<p class="desc reveal reveal-delay-1">The public community introduces the standard. Your member space is where your personal journey continues—your Titan progress, evidence status, declaration, challenge history and membership identity.</p>
+<div class="member-access-actions reveal reveal-delay-2">
+<a href="/account" class="btn btn-primary">Open My ORANOS ↗</a>
+<a href="/titan-challenge" class="btn btn-outline">Enter Titan ↗</a>
+</div>
+<p class="member-access-note reveal reveal-delay-3">Titan Pass issuance is a separate ORANOS team operation. A passed Titan outcome does not automatically create or assign a Titan Pass.</p>
+</div>
+<div class="member-access-grid">
+<article class="member-access-card reveal">
+<div><span class="pillar-num">01 / MEMBER SPACE</span><h3>MY ORANOS</h3><p>See your application status, pillar progress, evidence reviews, seven-day record and membership status.</p></div>
+<a href="/account">Open member dashboard →</a>
+</article>
+<article class="member-access-card reveal reveal-delay-1">
+<div><span class="pillar-num">02 / STRUCTURED TEST</span><h3>TITAN CHALLENGE</h3><p>Enter the official challenge workspace when you are ready to train, document and submit your attempt.</p></div>
+<a href="/titan-challenge">Open Titan workspace →</a>
+</article>
+<article class="member-access-card reveal reveal-delay-2">
+<div><span class="pillar-num">03 / MEMBERSHIP IDENTITY</span><h3>TITAN PASS</h3><p>Your Titan identity is recorded separately after a passed review and manual ORANOS issuance.</p></div>
+<a href="/account">View Titan Pass status →</a>
+</article>
+<article class="member-access-card reveal reveal-delay-3">
+<div><span class="pillar-num">04 / AI MENTOR</span><h3>OTERNAL</h3><p>Continue into the OTERNAL experience from inside your ORANOS member journey.</p></div>
+<a href="/oternal">Meet OTERNAL →</a>
+</article>
+</div>
+</div>
+</div>
+</section>
 <section id="titan" class="section">
 <div class="container"><span class="eyebrow reveal">A Structured Test of Commitment</span><h2 class="section-title reveal">TITAN CHALLENGE</h2>
 <p class="about-body reveal reveal-delay-1">A structured physical and personal commitment within the wider ORANOS journey. The challenge is not the whole community, and it should be attempted only when the participant can do so safely and within their current ability.</p>
@@ -857,8 +917,10 @@ main .community-card p{margin:0}
 <article class="community-card reveal"><span class="pillar-num">05</span><h3>2 km Run</h3><p>Complete 2 kilometres in under 14 minutes, only if this effort is appropriate for your fitness and health.</p></article>
 </div>
 <div class="community-card reveal titan-safety"><h3>Train responsibly</h3><p>Warm up, use proper technique, hydrate and rest. Stop for pain, dizziness, chest discomfort or unusual shortness of breath. If you are new to exercise, have an injury or a health concern, seek qualified guidance before attempting the challenge. These standards are challenge targets—not medical advice or a guarantee of readiness. Self-reported completion is not the same as independently verified performance.</p></div>
-<a href="/account" class="nav-cta">MY ORANOS ↗</a>
-        <a href="/titan-challenge"<a href="/titan-challenge" class="btn btn-outline reveal reveal-delay-2">Explore Titan Challenge</a>
+<div class="hero-actions reveal reveal-delay-2">
+<a href="/account" class="btn btn-primary">Open My ORANOS ↗</a>
+<a href="/titan-challenge" class="btn btn-outline">Explore Titan Challenge →</a>
+</div>
 </div>
 </section>
 <section id="community" class="section">
