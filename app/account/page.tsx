@@ -232,7 +232,7 @@ export default async function AccountPage() {
         <p>Your standard is built in the choices you repeat. Track your progress, review your evidence status, and take the next step.</p>
         <div className="welcome-actions">
           <a className="gold-button" href="/titan-challenge">Open Titan Challenge <span>↗</span></a>
-          <a className="text-link" href="/community.html">Explore community →</a>
+          <a className="text-link" href="/community.html">Explore community →</a><a className="text-link" href="/oternal">Meet OTERNAL →</a>
         </div>
       </section>
 
