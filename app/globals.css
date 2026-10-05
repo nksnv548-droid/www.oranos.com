@@ -772,3 +772,20 @@ a,button,input,textarea,select{touch-action:manipulation}
 @media(max-width:900px){.member-dashboard-status-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.member-dashboard-two-col{grid-template-columns:1fr}.member-dashboard-two-col .member-dashboard-panel{margin:14px 0}}
 @media(max-width:600px){.member-dashboard-status-grid{gap:8px;margin:20px 0 48px}.member-status-card{padding:14px}.member-status-card strong{font-size:16px}.member-status-card p{font-size:11px}.member-dashboard-panel{padding:20px 16px;margin:22px 0}.member-challenge-row{grid-template-columns:30px minmax(0,1fr);gap:10px}.member-challenge-review{grid-column:2}.member-history-row{grid-template-columns:1fr;gap:14px}.member-day-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.member-panel{align-items:flex-start;flex-direction:column}.member-dashboard-panel-head{align-items:flex-start}.member-dashboard-panel-head h2{font-size:32px}}
 @media(prefers-reduced-motion:reduce){.member-dashboard-panel *{scroll-behavior:auto}}
+
+/* PHASE 05 — Titan seven-day check-in */
+.titan-checkin-panel{margin:34px 0;padding:clamp(22px,4vw,42px);border:1px solid rgba(214,179,106,.3);background:rgba(255,255,255,.68)}
+.titan-checkin-panel h3{margin:9px 0;color:#17243b;font-size:clamp(26px,4vw,42px);font-weight:500;letter-spacing:-.04em}
+.titan-checkin-panel h3 em{font-family:Georgia,serif;font-weight:400}
+.titan-day-tabs{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;margin:24px 0 14px}
+.titan-day-tabs button{min-height:50px;border:1px solid rgba(22,40,67,.14);background:rgba(255,255,255,.8);color:#6e7b8d;font-size:10px;letter-spacing:.08em;cursor:pointer}
+.titan-day-tabs button.active{border-color:rgba(214,179,106,.7);background:rgba(214,179,106,.1);color:#8a744e}
+.titan-day-tabs small{display:block;margin-top:5px;font-size:8px;color:#8994a4}
+.titan-checkin-pillar-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.titan-checkin-pillar-grid button{display:flex;min-height:78px;align-items:center;gap:12px;padding:14px;border:1px solid rgba(22,40,67,.14);background:rgba(255,255,255,.8);text-align:left;cursor:pointer}
+.titan-checkin-pillar-grid button>span{font-size:18px;color:#8a744e}
+.titan-checkin-pillar-grid button strong{color:#17243b;font-size:10px;letter-spacing:.1em}
+.titan-checkin-pillar-grid button small{margin-left:auto;color:#8994a4;font-size:8px;letter-spacing:.08em}
+.titan-checkin-pillar-grid button.checkin-done{border-color:rgba(61,122,89,.35);background:rgba(61,122,89,.05)}
+.titan-checkin-pillar-grid button.checkin-done>span,.titan-checkin-pillar-grid button.checkin-done small{color:#397752}
+@media(max-width:600px){.titan-day-tabs{gap:4px}.titan-day-tabs button{min-height:44px;font-size:9px}.titan-checkin-pillar-grid{grid-template-columns:1fr}.titan-checkin-pillar-grid button{min-height:62px}}
