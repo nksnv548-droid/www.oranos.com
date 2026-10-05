@@ -174,7 +174,7 @@ export default function TitanWorkspace() {
           completed,
           submitted_at: new Date().toISOString(),
           reviewer_status: "submitted",
-        }, { onConflict: "application_id,day_number,pillar_code" });
+        }, { onConflict: "user_id,application_id,pillar_code,day_number" });
       if (error) throw error;
       setCheckins((prev) => ({
         ...prev,
