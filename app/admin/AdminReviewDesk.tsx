@@ -184,7 +184,7 @@ export default function AdminReviewDesk() {
       ? submissions.filter((row) => row.application_id === selectedApplicationId)
       : submissions;
     return selected
-      .filter((row) => row.status === "under_review" || row.status === "reattempt")
+      .filter((row) => row.status === "under_review")
       .sort((a, b) => Date.parse(b.created_at) - Date.parse(a.created_at));
   }, [selectedApplicationId, submissions]);
 
@@ -379,6 +379,7 @@ export default function AdminReviewDesk() {
         .update({
           status: decision,
           reviewer_notes: reviewerNotes,
+          reviewed_by: (await supabase.auth.getUser()).data.user?.id || null,
           reviewed_at: new Date().toISOString(),
         })
         .eq("id", row.id);
