@@ -67,6 +67,10 @@ export default function TitanWorkspace() {
   const [gpsStatus, setGpsStatus] = useState("");
   const [gpsPoints, setGpsPoints] = useState<Point[]>([]);
   const [gpsSignals, setGpsSignals] = useState<string[]>([]);
+  const [checkins, setCheckins] = useState<Record<number, Record<string, boolean>>>({});
+  const [checkinBusy, setCheckinBusy] = useState(false);
+  const [checkinDay, setCheckinDay] = useState(1);
+  const [checkinMessage, setCheckinMessage] = useState("");
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const mediaStreamRef = useRef<MediaStream | null>(null);
   const mediaChunksRef = useRef<Blob[]>([]);
@@ -118,16 +122,27 @@ export default function TitanWorkspace() {
     setApplicationId(app.id);
     setApplicationStatus(app.status);
 
-    const [{ data: challengeRows, error: challengeError }, { data: submissionRows, error: submissionError }] = await Promise.all([
+    const [{ data: challengeRows, error: challengeError }, { data: submissionRows, error: submissionError }, { data: checkinRows, error: checkinError }] = await Promise.all([
       supabase.from("titan_challenges").select("id,slug,name,description,target_value,target_unit,max_time_seconds,sort_order").eq("active", true).order("sort_order"),
       supabase.from("titan_submissions")
         .select("id,challenge_id,session_id,video_path,video_duration_seconds,client_rep_count,system_rep_count,hold_seconds,gps_distance_meters,gps_elapsed_seconds,integrity_status,integrity_signals,status,reviewer_notes,created_at,reviewed_at")
         .eq("application_id", app.id)
         .order("created_at", { ascending: false }),
+      supabase.from("titan_daily_checkins")
+        .select("day_number,pillar_code,completed,reviewer_status")
+        .eq("application_id", app.id)
+        .order("day_number"),
     ]);
 
     if (challengeError) setMessage(challengeError.message);
     if (submissionError) setMessage(submissionError.message);
+    if (checkinError) setCheckinMessage(checkinError.message);
+    const nextCheckins: Record<number, Record<string, boolean>> = {};
+    for (const row of (checkinRows || []) as Array<{day_number:number;pillar_code:string;completed:boolean}>) {
+      nextCheckins[row.day_number] ||= {};
+      nextCheckins[row.day_number][row.pillar_code] = row.completed;
+    }
+    setCheckins(nextCheckins);
     setChallenges((challengeRows || []) as Challenge[]);
     setSubmissions((submissionRows || []) as Submission[]);
     setBusy(false);
@@ -141,6 +156,37 @@ export default function TitanWorkspace() {
       mediaStreamRef.current?.getTracks().forEach((track) => track.stop());
     };
   }, [load]);
+
+  const toggleCheckin = async (day: number, pillar: string) => {
+    if (!applicationId || !userId) return;
+    setCheckinBusy(true);
+    setCheckinMessage("");
+    const completed = !(checkins[day]?.[pillar] ?? false);
+    try {
+      const { error } = await supabase
+        .from("titan_daily_checkins")
+        .upsert({
+          user_id: userId,
+          application_id: applicationId,
+          pillar_code: pillar,
+          day_number: day,
+          checkin_date: new Date().toISOString().slice(0, 10),
+          completed,
+          submitted_at: new Date().toISOString(),
+          reviewer_status: "submitted",
+        }, { onConflict: "application_id,day_number,pillar_code" });
+      if (error) throw error;
+      setCheckins((prev) => ({
+        ...prev,
+        [day]: { ...(prev[day] || {}), [pillar]: completed },
+      }));
+      setCheckinMessage(completed ? `${pillar} check-in saved for Day ${day}.` : `${pillar} check-in cleared for Day ${day}.`);
+    } catch (error) {
+      setCheckinMessage(error instanceof Error ? error.message : "Could not save this check-in.");
+    } finally {
+      setCheckinBusy(false);
+    }
+  };
 
   const startRecording = async (challenge: Challenge) => {
     setMessage("");
@@ -393,6 +439,8 @@ export default function TitanWorkspace() {
       setMessage("2 km GPS evidence submitted. ORANOS team will verify the route, distance and timing.");
       setGpsStatus("Run submitted for review.");
       setGpsPoints([]);
+      setGpsSignals([]);
+
       gpsPointsRef.current = [];
       await load();
     } catch (error) {
@@ -415,6 +463,27 @@ export default function TitanWorkspace() {
       <h2>Complete the tests.<br /><em>Submit the proof.</em></h2>
       <p className="titan-copy">Each physical test accepts a camera recording or a video upload. The 2 km run uses live GPS before submission. Every item stays pending until the ORANOS team reviews it.</p>
       {message && <p className="titan-workspace-message" role="status" aria-live="polite">{message}</p>}
+      <div className="titan-checkin-panel">
+        <div className="eyebrow">DISCIPLINE / 7-DAY CHECK-IN</div>
+        <h3>Build the standard <em>daily.</em></h3>
+        <p className="titan-note">Complete the three daily pillars for each challenge day. A check-in records your submission; ORANOS review remains separate.</p>
+        <div className="titan-day-tabs" role="tablist" aria-label="Titan challenge days">
+          {Array.from({ length: 7 }, (_, i) => i + 1).map((day) => {
+            const count = Object.values(checkins[day] || {}).filter(Boolean).length;
+            return <button key={day} type="button" className={checkinDay === day ? "active" : ""} onClick={() => setCheckinDay(day)}>{String(day).padStart(2, "0")} <small>{count}/3</small></button>;
+          })}
+        </div>
+        <div className="titan-checkin-pillar-grid">
+          {["FITNESS", "MINDSET", "LIFESTYLE"].map((pillar) => {
+            const done = checkins[checkinDay]?.[pillar] ?? false;
+            return <button key={pillar} type="button" className={done ? "checkin-done" : ""} disabled={checkinBusy} onClick={() => void toggleCheckin(checkinDay, pillar)}>
+              <span>{done ? "✓" : "○"}</span><strong>{pillar}</strong><small>{done ? "SUBMITTED" : "MARK COMPLETE"}</small>
+            </button>;
+          })}
+        </div>
+        {checkinMessage && <p className="titan-workspace-message" role="status">{checkinMessage}</p>}
+      </div>
+
       <div className="titan-evidence-grid">
         {challenges.map((challenge) => {
           const latest = latestByChallenge.get(challenge.id);
