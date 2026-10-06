@@ -674,6 +674,7 @@ footer{
   .section{padding:7rem 0;}
   #titan{padding:6rem 0;}
 }
+  @media(max-width:760px){.oternal-home-grid{grid-template-columns:1fr!important;gap:2rem!important}.hero-actions{align-items:stretch}.hero-actions .btn{width:100%;justify-content:center}}
 </style>
 </head>
 <body>
@@ -691,9 +692,11 @@ footer{
   <div class="nav-links" id="navLinks">
     <a href="#about">About</a>
     <a href="#pillars">Pillars</a>
+    <a href="#oternal">OTERNAL</a>
     <a href="#titan">Titan Challenge</a>
     <a href="#journey">Journey</a>
-    <a href="/community.html" class="nav-cta">Explore Community</a>
+    <a href="/oternal/launch" class="nav-cta">Enter OTERNAL</a>
+    <a href="/sign-in" class="nav-cta">Member Access</a>
   </div>
   <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
     <span></span><span></span><span></span>
@@ -715,6 +718,7 @@ footer{
       <p class="hero-sub reveal in reveal-delay-1">Strength is Earned. Legacy is Forged.</p>
       <div class="hero-actions reveal in reveal-delay-2">
         <a href="#about" class="btn btn-primary">Begin Your Journey</a>
+        <a href="/oternal/launch" class="btn btn-outline">Meet OTERNAL</a>
         <a href="/titan-challenge" class="btn btn-outline">The Titan Challenge</a>
       </div>
     </div>
@@ -796,7 +800,29 @@ footer{
       <div class="benefit-item reveal"><span class="benefit-mark">✦</span><span class="txt">A legacy mindset for life</span></div>
     </div>
   </div>
-</section<!-- TITAN CHALLENGE — full-screen cinematic temple + one statue -->
+</section<!-- OTERNAL — AI MENTOR -->
+<section id="oternal" class="section">
+  <div class="container">
+    <div class="oternal-home-grid" style="display:grid;grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr);gap:3rem;align-items:center;">
+      <div>
+        <span class="eyebrow reveal">THE ORANOS AI MENTOR</span>
+        <h2 class="section-title reveal" style="text-align:left;">MEET <em>OTERNAL.</em></h2>
+        <p class="desc reveal reveal-delay-1">OTERNAL is the AI mentor built for the ORANOS journey — helping members turn Fitness, Mindset, Lifestyle and Discipline into a consistent daily practice.</p>
+        <div class="reveal reveal-delay-2" style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.6rem;">
+          <a href="/oternal/launch" class="btn btn-primary">Enter OTERNAL ↗</a>
+          <a href="/community.html" class="btn btn-outline">Explore Community</a>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-2" style="border:1px solid rgba(214,179,106,.22);padding:2rem;background:rgba(255,255,255,.025);">
+        <span class="eyebrow">DIGITAL MENTOR</span>
+        <h3 style="margin:.8rem 0 .7rem;font-family:Georgia,serif;font-size:clamp(24px,4vw,34px);font-weight:400;color:var(--marble);">Guidance between the milestones.</h3>
+        <p class="desc" style="margin:0;font-size:.95rem;">Access OTERNAL through your ORANOS member journey. Authentication is required before entering the app.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TITAN CHALLENGE — full-screen cinematic temple + one statue -->
 <section id="titan">
   <div class="titan-bg"></div>
   <div class="titan-scrim"></div>
