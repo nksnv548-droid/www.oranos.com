@@ -55,6 +55,7 @@ export default function TitanWorkspace() {
   const [userId, setUserId] = useState<string | null>(null);
   const [applicationId, setApplicationId] = useState<string | null>(null);
   const [applicationStatus, setApplicationStatus] = useState<string>("in_progress");
+  const [applicationStartedAt, setApplicationStartedAt] = useState<string | null>(null);
   const [challenges, setChallenges] = useState<Challenge[]>([]);
   const [submissions, setSubmissions] = useState<Submission[]>([]);
   const [busy, setBusy] = useState(true);
@@ -71,6 +72,17 @@ export default function TitanWorkspace() {
   const [checkinBusy, setCheckinBusy] = useState(false);
   const [checkinDay, setCheckinDay] = useState(1);
   const [checkinMessage, setCheckinMessage] = useState("");
+
+  const challengeDayForToday = useMemo(() => {
+    if (!applicationStartedAt) return 1;
+    const dateFormatter = new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Kolkata" });
+    const startDate = dateFormatter.format(new Date(applicationStartedAt));
+    const today = dateFormatter.format(new Date());
+    const start = Date.parse(`${startDate}T12:00:00Z`);
+    const current = Date.parse(`${today}T12:00:00Z`);
+    const diff = Math.floor((current - start) / 86400000) + 1;
+    return Math.min(7, Math.max(1, diff));
+  }, [applicationStartedAt]);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const mediaStreamRef = useRef<MediaStream | null>(null);
   const mediaChunksRef = useRef<Blob[]>([]);
@@ -102,7 +114,7 @@ export default function TitanWorkspace() {
 
     const { data: app, error: appError } = await supabase
       .from("titan_applications")
-      .select("id,status")
+      .select("id,status,started_at")
       .eq("user_id", user.id)
       .order("created_at", { ascending: false })
       .limit(1)
@@ -121,6 +133,15 @@ export default function TitanWorkspace() {
 
     setApplicationId(app.id);
     setApplicationStatus(app.status);
+    setApplicationStartedAt(app.started_at ?? null);
+    setCheckinDay(() => {
+      if (!app.started_at) return 1;
+      const dateFormatter = new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Kolkata" });
+      const startDate = dateFormatter.format(new Date(app.started_at));
+      const today = dateFormatter.format(new Date());
+      const diff = Math.floor((Date.parse(`${today}T12:00:00Z`) - Date.parse(`${startDate}T12:00:00Z`)) / 86400000) + 1;
+      return Math.min(7, Math.max(1, diff));
+    });
 
     const [{ data: challengeRows, error: challengeError }, { data: submissionRows, error: submissionError }, { data: checkinRows, error: checkinError }] = await Promise.all([
       supabase.from("titan_challenges").select("id,slug,name,description,target_value,target_unit,max_time_seconds,sort_order").eq("active", true).order("sort_order"),
@@ -158,7 +179,7 @@ export default function TitanWorkspace() {
   }, [load]);
 
   const toggleCheckin = async (day: number, pillar: string) => {
-    if (!applicationId || !userId) return;
+    if (!applicationId || !userId || day !== challengeDayForToday) return;
     setCheckinBusy(true);
     setCheckinMessage("");
     const completed = !(checkins[day]?.[pillar] ?? false);
@@ -466,17 +487,18 @@ export default function TitanWorkspace() {
       <div className="titan-checkin-panel">
         <div className="eyebrow">DISCIPLINE / 7-DAY CHECK-IN</div>
         <h3>Build the standard <em>daily.</em></h3>
-        <p className="titan-note">Complete the three daily pillars for each challenge day. A check-in records your submission; ORANOS review remains separate.</p>
+        <p className="titan-note">Complete the three daily pillars on the current challenge day. Future days unlock automatically; previous days remain read-only so the seven-day standard cannot be backfilled.</p>
         <div className="titan-day-tabs" role="tablist" aria-label="Titan challenge days">
           {Array.from({ length: 7 }, (_, i) => i + 1).map((day) => {
             const count = Object.values(checkins[day] || {}).filter(Boolean).length;
-            return <button key={day} type="button" className={checkinDay === day ? "active" : ""} onClick={() => setCheckinDay(day)}>{String(day).padStart(2, "0")} <small>{count}/3</small></button>;
+            const locked = day !== challengeDayForToday;
+            return <button key={day} type="button" className={checkinDay === day ? "active" : ""} disabled={locked} aria-disabled={locked} onClick={() => setCheckinDay(day)}>{String(day).padStart(2, "0")} <small>{count}/3</small></button>;
           })}
         </div>
         <div className="titan-checkin-pillar-grid">
           {["FITNESS", "MINDSET", "LIFESTYLE"].map((pillar) => {
             const done = checkins[checkinDay]?.[pillar] ?? false;
-            return <button key={pillar} type="button" className={done ? "checkin-done" : ""} disabled={checkinBusy} onClick={() => void toggleCheckin(checkinDay, pillar)}>
+            return <button key={pillar} type="button" className={done ? "checkin-done" : ""} disabled={checkinBusy || checkinDay !== challengeDayForToday} onClick={() => void toggleCheckin(checkinDay, pillar)}>
               <span>{done ? "✓" : "○"}</span><strong>{pillar}</strong><small>{done ? "SUBMITTED" : "MARK COMPLETE"}</small>
             </button>;
           })}
