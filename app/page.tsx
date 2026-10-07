@@ -1,5 +1,22 @@
-import { redirect } from "next/navigation";
+import Link from "next/link";
+import { PublicShell } from "@/components/oranos/SiteShell";
 
-export default function Home() {
-  redirect("/index.html");
+const pillars = [
+  ["01", "FITNESS", "Build a body capable of carrying your standard."],
+  ["02", "MINDSET", "Train the mind that decides what happens next."],
+  ["03", "LIFESTYLE", "Make the environment support the person you intend to become."],
+  ["04", "DISCIPLINE", "Turn intention into consistent action."],
+] as const;
+
+export default function HomePage() {
+  return <PublicShell><main>
+    <section className="oranos-home-hero"><div className="oranos-home-hero-copy"><p className="oranos-kicker">THE ORANOS STANDARD</p><h1>Forge your <em>standard.</em></h1><p className="oranos-lede">ORANOS is a fitness and lifestyle brotherhood built around the disciplines that shape how you live, train, and grow.</p><div className="oranos-actions"><Link className="oranos-button oranos-button-primary" href="/community">Begin Your Journey</Link><Link className="oranos-button oranos-button-secondary" href="/oternal">Meet OTERNAL</Link></div></div><div className="oranos-home-hero-art" aria-hidden="true"><img src="/hero-statue.png" alt="" /></div></section>
+    <section className="oranos-section oranos-section-light" id="about"><div className="oranos-section-heading"><p className="oranos-kicker">01 / ABOUT ORANOS</p><h2>A system for becoming.</h2></div><div className="oranos-copy-grid"><p>ORANOS exists for people who want their actions to carry more weight than their intentions.</p><p>It brings training, mindset, lifestyle, and discipline into one standard so progress is not fragmented across different parts of life.</p></div><Link className="oranos-text-link" href="/about">Explore the ORANOS vision</Link></section>
+    <section className="oranos-section" id="pillars"><div className="oranos-section-heading"><p className="oranos-kicker">02 / THE FOUNDATION</p><h2>Four pillars. One direction.</h2></div><div className="oranos-pillar-grid">{pillars.map(([number,title,body]) => <article className="oranos-card" key={title}><span className="oranos-card-number">{number}</span><h3>{title}</h3><p>{body}</p></article>)}</div><Link className="oranos-text-link" href="/pillars">Understand the four pillars</Link></section>
+    <section className="oranos-feature-section oranos-feature-oternal" id="oternal"><div className="oranos-feature-copy"><p className="oranos-kicker">03 / OTERNAL</p><h2>Meet OTERNAL.</h2><p>OTERNAL is the separate AI Mentor experience built to guide your progress across Fitness, Mindset, Lifestyle, and Discipline.</p><Link className="oranos-button oranos-button-primary" href="/oternal">Explore OTERNAL</Link></div><div className="oranos-feature-panel"><span>AI MENTOR</span><strong>YOUR PATH.<br />YOUR GROWTH.</strong><p>One mentor. Four pillars. A continuous path forward.</p></div></section>
+    <section className="oranos-feature-section oranos-feature-titan" id="titan"><div className="oranos-feature-copy"><p className="oranos-kicker">04 / TITAN CHALLENGE</p><h2>Seven days of proof.</h2><p>Five physical tests. Three daily pillars. Genuine evidence. ORANOS review. The journey is structured to test consistency, not a single moment.</p><Link className="oranos-button oranos-button-primary" href="/titan-challenge">Explore Titan</Link></div><div className="oranos-metric-row"><div><strong>7</strong><span>DAYS</span></div><div><strong>5</strong><span>TESTS</span></div><div><strong>3</strong><span>PILLARS</span></div></div></section>
+    <section className="oranos-section oranos-section-light" id="journey"><div className="oranos-section-heading"><p className="oranos-kicker">05 / YOUR JOURNEY</p><h2>Understand the path.</h2></div><div className="oranos-journey-rail"><div><span>01</span><strong>ENTER</strong><p>Discover the ORANOS standard.</p></div><div><span>02</span><strong>TRAIN</strong><p>Build the habits behind the standard.</p></div><div><span>03</span><strong>PROVE</strong><p>Take on the Titan Challenge.</p></div><div><span>04</span><strong>GROW</strong><p>Use OTERNAL and the Community to keep progressing.</p></div></div><Link className="oranos-text-link" href="/journey">Explore the ORANOS journey</Link></section>
+    <section className="oranos-community-band" id="community"><div><p className="oranos-kicker">06 / COMMUNITY</p><h2>The brotherhood behind the standard.</h2><p>ORANOS Community is where the standard becomes a shared way of life.</p></div><Link className="oranos-button oranos-button-primary" href="/community">Explore Community</Link></section>
+    <section className="oranos-final-cta"><p className="oranos-kicker">ORANOS</p><h2>Build the life your standard can support.</h2><Link className="oranos-button oranos-button-primary" href="/community">Begin Your Journey</Link></section>
+  </main></PublicShell>;
 }
