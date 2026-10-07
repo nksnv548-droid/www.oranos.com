@@ -38,6 +38,13 @@ const noStoreHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [
+      { source: "/community.html", destination: "/community", permanent: false },
+      { source: "/account.html", destination: "/account", permanent: false },
+      { source: "/auth.html", destination: "/sign-in", permanent: false },
+    ];
+  },
   poweredByHeader: false,
   async headers() {
     return [
