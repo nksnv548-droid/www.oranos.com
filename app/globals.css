@@ -1016,3 +1016,47 @@ a,button,input,textarea,select{touch-action:manipulation}
   .oranos-footer-links{gap:16px}
   .oranos-metric-row strong{font-size:46px}
 }
+
+
+/* PHASE 7/8 — MEMBER + OPERATIONS PRODUCT SHELL */
+.oranos-member-app,.oranos-admin-app{min-height:100vh;background:#0a0a09;color:#eee8dc}
+.oranos-member-app .dash-header,.oranos-admin-app .dash-header{display:none}
+.member-app-header{position:sticky;top:0;z-index:900;display:flex;align-items:center;gap:24px;min-height:72px;padding:12px clamp(18px,4vw,54px);background:rgba(10,10,9,.94);border-bottom:1px solid #292721;backdrop-filter:blur(16px)}
+.member-app-header .brand{display:flex;align-items:center;gap:10px;color:#eee8dc;text-decoration:none;white-space:nowrap}
+.member-app-header .account-logo{width:30px;height:30px;object-fit:contain}
+.member-app-header .brand small{display:block;margin-top:3px;color:#8c877e;font-size:7px;letter-spacing:.16em}
+.member-app-nav{display:flex;align-items:center;gap:20px;margin-left:auto}
+.member-app-nav a{color:#99938a;text-decoration:none;font-size:9px;letter-spacing:.12em;text-transform:uppercase}
+.member-app-nav a:hover{color:#e9e1d2}
+.member-app-header .header-user{display:flex;align-items:center;gap:12px;color:#aaa49b;font-size:10px}
+.member-app-header .quiet-button{border:1px solid #403c34;background:transparent;color:#c9c2b5;padding:8px 11px;font-size:9px;text-transform:uppercase;letter-spacing:.1em}
+.member-app-hero{max-width:1240px;margin:auto;padding:72px clamp(20px,5vw,70px) 50px}
+.member-app-hero.welcome h1{max-width:900px}
+.member-dashboard-status-grid{max-width:1240px;margin:0 auto 18px;padding:0 clamp(20px,5vw,70px);display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.member-status-card{padding:18px;border:1px solid #2d2a25;background:#11110f;min-height:130px}
+.member-status-card strong{display:block;margin:10px 0 8px;color:#e8dfcf;font-family:Cormorant Garamond,serif;font-size:22px;font-weight:500;line-height:1.15}
+.member-status-card p{margin:0;color:#77736b;font-size:10px;line-height:1.5}
+.oranos-member-app .section-head,.oranos-member-app .pillar-grid,.oranos-member-app .member-dashboard-panel,.oranos-member-app .member-dashboard-two-col,.oranos-member-app .member-panel{max-width:1240px;margin-left:auto;margin-right:auto}
+.oranos-member-app .section-head{padding-left:clamp(20px,5vw,70px);padding-right:clamp(20px,5vw,70px)}
+.oranos-member-app .pillar-grid{padding-left:clamp(20px,5vw,70px);padding-right:clamp(20px,5vw,70px)}
+.oranos-member-app .member-dashboard-panel,.oranos-member-app .member-dashboard-two-col,.oranos-member-app .member-panel{margin-top:12px;margin-bottom:12px}
+.oranos-member-app .member-dashboard-panel{background:#10100e;border-color:#2b2924}
+.oranos-member-app .pillar-card{background:#11110f;border-color:#2b2924}
+.oranos-member-app .pillar-symbol{display:none}
+.oranos-member-app .dash-footer,.oranos-admin-app .dash-footer{max-width:1240px;margin:auto;padding-left:clamp(20px,5vw,70px);padding-right:clamp(20px,5vw,70px)}
+.admin-app-header{justify-content:space-between}
+.oranos-admin-app .admin-review-title-row{max-width:1240px;margin:0 auto;padding-left:clamp(20px,5vw,70px);padding-right:clamp(20px,5vw,70px)}
+.oranos-admin-app .admin-command-grid,.oranos-admin-app .admin-panel{max-width:1240px;margin-left:auto;margin-right:auto}
+.oranos-admin-app .admin-panel{border-color:#2d2a25;background:#10100f}
+.oranos-admin-app .admin-command-grid{padding-left:clamp(20px,5vw,70px);padding-right:clamp(20px,5vw,70px)}
+@media(max-width:900px){
+ .member-app-header{flex-wrap:wrap;min-height:auto}
+ .member-app-nav{order:3;width:100%;margin:0;overflow:auto;padding:4px 0 3px;gap:16px}
+ .member-app-nav a{white-space:nowrap}
+ .member-dashboard-status-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:600px){
+ .member-app-header .header-user>span{display:none}
+ .member-dashboard-status-grid{grid-template-columns:1fr}
+ .member-app-hero{padding-top:45px}
+}
