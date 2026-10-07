@@ -217,8 +217,8 @@ export default async function AccountPage() {
   const hasDataError = dataErrors.length > 0;
 
   return (
-    <main className="dashboard">
-      <header className="dash-header">
+    <main className="oranos-member-app dashboard">
+      <header className="member-app-header"><a className="brand" href="/"><img src="/oranos-crest.png" alt="ORANOS crest" className="account-logo" /><span>ORANOS <small>MY ORANOS</small></span></a><nav className="member-app-nav" aria-label="Member navigation"><a href="#overview">Overview</a><a href="#titan">Titan</a><a href="#discipline">Discipline</a><a href="#pass">Titan Pass</a><a href="/oternal">OTERNAL</a></nav><div className="header-user"> <span>{name}</span><form action="/auth/signout" method="post"><button className="quiet-button" type="submit">Sign out</button></form></div></header><div id="overview">
         <a className="brand" href="/community">
           <img src="/oranos-crest.png" alt="ORANOS crest" className="account-logo" />
           <span>ORANOS <small>COMMUNITY</small></span>
@@ -229,13 +229,13 @@ export default async function AccountPage() {
         </div>
       </header>
 
-      <section className="welcome">
+      <section className="member-app-hero welcome">
         <div className="eyebrow">MEMBER SPACE / 01</div>
         <h1>Welcome back, <em>{name}.</em></h1>
         <p>Your standard is built in the choices you repeat. Track your progress, review your evidence status, and take the next step.</p>
         <div className="welcome-actions">
-          <a className="gold-button" href="/titan-challenge">Open Titan Challenge <span>↗</span></a>
-          <a className="text-link" href="/community">Explore community →</a><a className="text-link" href="/oternal">Meet OTERNAL →</a>
+          <a className="gold-button" href="/titan-challenge">Open Titan Challenge</a>
+          <a className="text-link" href="/community">Explore community</a><a className="text-link" href="/oternal">Meet OTERNAL</a>
         </div>
       </section>
 
@@ -290,7 +290,7 @@ export default async function AccountPage() {
         })}
       </section>
 
-      <section className="member-dashboard-panel">
+      <section id="titan" className="member-dashboard-panel">
         <div className="member-dashboard-panel-head">
           <div>
             <div className="eyebrow">TITAN PROGRESS / FITNESS</div>
@@ -330,7 +330,7 @@ export default async function AccountPage() {
         )}
       </section>
 
-      <section className="member-dashboard-two-col">
+      <section id="discipline" className="member-dashboard-two-col">
         <article className="member-dashboard-panel">
           <div className="member-dashboard-panel-head">
             <div>
@@ -414,7 +414,7 @@ export default async function AccountPage() {
         )}
       </section>
 
-      <section className="member-panel">
+      <section id="pass" className="member-panel">
         <div>
           <div className="eyebrow">YOUR TITAN PASS</div>
           {passActive ? (
@@ -439,7 +439,7 @@ export default async function AccountPage() {
         </div>
         <div className="member-status"><span className="status-dot" /> {passActive ? "TITAN PASS ACTIVE" : "MEMBERSHIP NOT YET ISSUED"}</div>
       </section>
-
+      </div>
       <footer className="dash-footer"><span>ORANOS — FORGE YOUR STANDARD.</span><a href="/community">Community home</a></footer>
     </main>
   );
