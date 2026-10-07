@@ -34,12 +34,6 @@ const imageSlots = ["AI MENTOR", "FITNESS", "DAILY GUIDANCE", "YOUR JOURNEY"];
 export default function OternalPage() {
   return <PublicShell className="oranos-product-shell"><main className="oternal-page">
     <div className="oternal-grid" aria-hidden="true" />
-    <div className="oternal-legacy-nav" aria-hidden="true">
-      <Link href="/" className="oternal-oranos-link"><span>ORANOS</span></Link>
-      <div className="oternal-nav-center">OTERNAL</div>
-      <Link href={OTERNAL_LAUNCH_PATH} className="oternal-nav-cta">ENTER OTERNAL</Link>
-    </div>
-
     <section className="oternal-hero">
       <div className="oternal-hero-copy">
         <p className="oternal-kicker">THE AI MENTOR OF THE ORANOS COMMUNITY</p>
