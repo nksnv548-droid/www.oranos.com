@@ -34,9 +34,9 @@ export default function OternalPage() {
   return <main className="oternal-page">
     <div className="oternal-grid" aria-hidden="true" />
     <header className="oternal-nav">
-      <Link href="/community.html" className="oternal-oranos-link"><span>ORANOS ↗</span></Link>
+      <Link href="/" className="oternal-oranos-link"><span>ORANOS</span></Link>
       <div className="oternal-nav-center">OTERNAL</div>
-      <Link href={OTERNAL_LAUNCH_PATH} className="oternal-nav-cta">ENTER OTERNAL ↗</Link>
+      <Link href={OTERNAL_LAUNCH_PATH} className="oternal-nav-cta">ENTER OTERNAL</Link>
     </header>
 
     <section className="oternal-hero">
@@ -44,7 +44,7 @@ export default function OternalPage() {
         <p className="oternal-kicker">THE AI MENTOR OF THE ORANOS COMMUNITY</p>
         <h1>YOUR PATH.<br/><em>YOUR GROWTH.</em></h1>
         <p className="oternal-lead">A personal AI mentor designed around Fitness, Mindset, Lifestyle and Discipline.</p>
-        <div className="oternal-hero-actions"><a href="#about" className="oternal-button">DISCOVER OTERNAL ↓</a><Link href={OTERNAL_LAUNCH_PATH} className="oternal-button">ENTER OTERNAL ↗</Link><span className="oternal-status"><i className="oternal-status-dot"/> MEMBER ACCESS REQUIRED</span></div>
+        <div className="oternal-hero-actions"><a href="#about" className="oternal-button">DISCOVER OTERNAL</a><Link href={OTERNAL_LAUNCH_PATH} className="oternal-button">ENTER OTERNAL</Link><span className="oternal-status"><i className="oternal-status-dot"/> MEMBER ACCESS REQUIRED</span></div>
       </div>
       <div className="oternal-hero-art" aria-label="Official OTERNAL visual will be added when the approved brand asset is ready">
         <span className="oternal-art-index">OTERNAL / OFFICIAL VISUAL</span>
@@ -112,10 +112,10 @@ export default function OternalPage() {
     <section id="app" className="oternal-section oternal-cta-section">
       <div className="oternal-cta-box"><p className="oternal-section-index">08 / OTERNAL APP</p>
         <div className="oternal-cta-layout"><div><p className="oternal-cta-kicker">THE NEXT LAYER OF THE ORANOS JOURNEY</p><h2>YOUR NEXT<br/><em>STEP.</em></h2></div>
-          <div><p className="oternal-large-copy">OTERNAL is currently in development.</p><p className="oternal-body">The Android APK will be available here when the official release file is ready. Google Play access will be added later.</p><Link href={OTERNAL_LAUNCH_PATH} className="oternal-button">OPEN OTERNAL ↗</Link></div>
+          <div><p className="oternal-large-copy">OTERNAL is currently in development.</p><p className="oternal-body">The Android APK will be available here when the official release file is ready. Google Play access will be added later.</p><Link href={OTERNAL_LAUNCH_PATH} className="oternal-button">OPEN OTERNAL</Link></div>
         </div>
       </div>
     </section>
-    <footer className="oternal-footer"><span>OTERNAL — THE AI MENTOR OF ORANOS</span><Link href="/community.html">BACK TO ORANOS ↗</Link></footer>
+    <footer className="oternal-footer"><span>OTERNAL — THE AI MENTOR OF ORANOS</span><Link href="/">BACK TO ORANOS</Link></footer>
   </main>;
 }
