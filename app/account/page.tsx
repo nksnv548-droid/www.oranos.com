@@ -219,15 +219,6 @@ export default async function AccountPage() {
   return (
     <main className="oranos-member-app dashboard">
       <header className="member-app-header"><a className="brand" href="/"><img src="/oranos-crest.png" alt="ORANOS crest" className="account-logo" /><span>ORANOS <small>MY ORANOS</small></span></a><nav className="member-app-nav" aria-label="Member navigation"><a href="#overview">Overview</a><a href="#titan">Titan</a><a href="#discipline">Discipline</a><a href="#pass">Titan Pass</a><a href="/oternal">OTERNAL</a></nav><div className="header-user"> <span>{name}</span><form action="/auth/signout" method="post"><button className="quiet-button" type="submit">Sign out</button></form></div></header><div id="overview">
-        <a className="brand" href="/community">
-          <img src="/oranos-crest.png" alt="ORANOS crest" className="account-logo" />
-          <span>ORANOS <small>COMMUNITY</small></span>
-        </a>
-        <div className="header-user">
-          <span>{name}</span>
-          <form action="/auth/signout" method="post"><button className="quiet-button" type="submit">Sign out</button></form>
-        </div>
-      </header>
 
       <section className="member-app-hero welcome">
         <div className="eyebrow">MEMBER SPACE / 01</div>
