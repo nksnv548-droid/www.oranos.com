@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { PublicShell } from "@/components/oranos/SiteShell";
 
 const OTERNAL_LAUNCH_PATH = "/oternal/launch";
 
@@ -31,13 +32,13 @@ const guidance = [
 const imageSlots = ["AI MENTOR", "FITNESS", "DAILY GUIDANCE", "YOUR JOURNEY"];
 
 export default function OternalPage() {
-  return <main className="oternal-page">
+  return <PublicShell className="oranos-product-shell"><main className="oternal-page">
     <div className="oternal-grid" aria-hidden="true" />
-    <header className="oternal-nav">
+    <div className="oternal-legacy-nav" aria-hidden="true">
       <Link href="/" className="oternal-oranos-link"><span>ORANOS</span></Link>
       <div className="oternal-nav-center">OTERNAL</div>
       <Link href={OTERNAL_LAUNCH_PATH} className="oternal-nav-cta">ENTER OTERNAL</Link>
-    </header>
+    </div>
 
     <section className="oternal-hero">
       <div className="oternal-hero-copy">
@@ -116,6 +117,6 @@ export default function OternalPage() {
         </div>
       </div>
     </section>
-    <footer className="oternal-footer"><span>OTERNAL — THE AI MENTOR OF ORANOS</span><Link href="/">BACK TO ORANOS</Link></footer>
-  </main>;
+    
+  </main></PublicShell>;
 }
