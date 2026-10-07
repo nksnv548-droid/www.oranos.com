@@ -272,7 +272,7 @@ export default async function AccountPage() {
           const progress = currentPillars.find((item) => item.pillar_code.toLowerCase() === pillar.name.toLowerCase());
           return (
             <article className="pillar-card" key={pillar.name}>
-              <div className="pillar-top"><span>{pillar.mark}</span><span className="pillar-symbol">↗</span></div>
+              <div className="pillar-top"><span>{pillar.mark}</span></div>
               <h3>{pillar.name}</h3>
               <p>{pillar.detail}</p>
               <div className="member-pillar-state">{progress?.status ? statusLabel(progress.status) : "Not started"}</div>
@@ -381,7 +381,7 @@ export default async function AccountPage() {
           <span className="section-index">{(submissions || []).length} records</span>
         </div>
         {!application || !(submissions || []).length ? (
-          <div className="member-empty"><h3>No submissions yet.</h3><p>Evidence you submit through the Titan workspace will appear here with its latest review status.</p><a className="text-link" href="/titan-challenge">Go to Titan workspace →</a></div>
+          <div className="member-empty"><h3>No submissions yet.</h3><p>Evidence you submit through the Titan workspace will appear here with its latest review status.</p><a className="text-link" href="/titan-challenge">Go to Titan workspace</a></div>
         ) : (
           <div className="member-history-list">
             {((submissions || []) as Submission[]).map((submission) => {
