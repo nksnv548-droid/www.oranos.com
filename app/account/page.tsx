@@ -219,13 +219,13 @@ export default async function AccountPage() {
   return (
     <main className="dashboard">
       <header className="dash-header">
-        <a className="brand" href="/community.html">
+        <a className="brand" href="/community">
           <img src="/oranos-crest.png" alt="ORANOS crest" className="account-logo" />
           <span>ORANOS <small>COMMUNITY</small></span>
         </a>
         <div className="header-user">
           <span>{name}</span>
-          <form action="/auth/signout" method="post"><button className="quiet-button" type="submit">Sign out ↗</button></form>
+          <form action="/auth/signout" method="post"><button className="quiet-button" type="submit">Sign out</button></form>
         </div>
       </header>
 
@@ -235,7 +235,7 @@ export default async function AccountPage() {
         <p>Your standard is built in the choices you repeat. Track your progress, review your evidence status, and take the next step.</p>
         <div className="welcome-actions">
           <a className="gold-button" href="/titan-challenge">Open Titan Challenge <span>↗</span></a>
-          <a className="text-link" href="/community.html">Explore community →</a><a className="text-link" href="/oternal">Meet OTERNAL →</a>
+          <a className="text-link" href="/community">Explore community →</a><a className="text-link" href="/oternal">Meet OTERNAL →</a>
         </div>
       </section>
 
@@ -299,7 +299,7 @@ export default async function AccountPage() {
           <span className="section-index">{approvedCount} / {totalChallenges || 5}</span>
         </div>
         {!application ? (
-          <div className="member-empty"><h3>No Titan attempt yet.</h3><p>Accept the Titan standard to create your first application and unlock evidence tracking.</p><a className="gold-button" href="/titan-challenge">Start Titan ↗</a></div>
+          <div className="member-empty"><h3>No Titan attempt yet.</h3><p>Accept the Titan standard to create your first application and unlock evidence tracking.</p><a className="gold-button" href="/titan-challenge">Start Titan</a></div>
         ) : challengeProgress.length === 0 ? (
           <div className="member-empty"><h3>Challenge standards unavailable.</h3><p>We could not load the active Titan tests right now. Refresh the page and try again.</p></div>
         ) : (
@@ -432,7 +432,7 @@ export default async function AccountPage() {
               <h2>{pass?.status === "revoked" ? "Pass currently inactive" : "Earn your Titan Pass."}</h2>
               <p>{outcomeValue === "passed" ? "Your Titan outcome is recorded as passed. Titan Pass allocation and issuance remain a separate manual ORANOS team step." : application ? (applicationLabels[application.status] || "Your challenge record is available.") : "The Titan Pass is issued after the ORANOS Titan Challenge is reviewed and approved. Starting a challenge does not automatically grant membership."}</p>
               {application && <div className="member-status"><span className="status-dot" /> {memberApplicationStatus}</div>}
-              <div className="welcome-actions"><a className="gold-button" href="/titan-challenge">{application ? "View Titan Challenge ↗" : "Explore the Titan Challenge ↗"}</a></div>
+              <div className="welcome-actions"><a className="gold-button" href="/titan-challenge">{application ? "View Titan Challenge" : "Explore the Titan Challenge"}</a></div>
             </>
           )}
           {(passError || applicationError || outcomeError) && <p role="status">Membership details are temporarily unavailable. Please refresh later.</p>}
@@ -440,7 +440,7 @@ export default async function AccountPage() {
         <div className="member-status"><span className="status-dot" /> {passActive ? "TITAN PASS ACTIVE" : "MEMBERSHIP NOT YET ISSUED"}</div>
       </section>
 
-      <footer className="dash-footer"><span>ORANOS — FORGE YOUR STANDARD.</span><a href="/community.html">Community home ↗</a></footer>
+      <footer className="dash-footer"><span>ORANOS — FORGE YOUR STANDARD.</span><a href="/community">Community home</a></footer>
     </main>
   );
 }
