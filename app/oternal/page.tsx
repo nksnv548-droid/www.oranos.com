@@ -104,8 +104,20 @@ export default function OternalPage() {
       <div className="oternal-preview-grid">{imageSlots.map((label,index)=><div className="oternal-preview-slot" key={label}><span>SCREEN {String(index+1).padStart(2,"0")}</span><strong>{label}</strong><small>OFFICIAL APP SCREENSHOTS WILL APPEAR AFTER THE ANDROID BUILD IS READY</small></div>)}</div>
     </section>
 
+    <section className="oternal-section oternal-flow">
+      <p className="oternal-section-index">08 / RESPONSIBLE GUIDANCE</p>
+      <div className="oternal-intro-grid">
+        <h2>Supportive.<br/><em>Not a substitute.</em></h2>
+        <div>
+          <p className="oternal-large-copy">OTERNAL is designed to support reflection and practical planning while leaving decisions in your hands.</p>
+          <p className="oternal-body">It is not a doctor, therapist, addiction-treatment service, or emergency service. Fitness guidance should be adapted to your abilities and health circumstances. If you are dealing with substance dependence, serious distress, or a health concern, qualified professionals can provide care that an AI mentor cannot.</p>
+          <p className="oternal-body">The goal is to help you identify constructive next steps—not diagnose you, promise a cure, shame you, or replace trusted people and professional support.</p>
+        </div>
+      </div>
+    </section>
+
     <section id="app" className="oternal-section oternal-cta-section">
-      <div className="oternal-cta-box"><p className="oternal-section-index">08 / OTERNAL APP</p>
+      <div className="oternal-cta-box"><p className="oternal-section-index">09 / OTERNAL APP</p>
         <div className="oternal-cta-layout"><div><p className="oternal-cta-kicker">THE NEXT LAYER OF THE ORANOS JOURNEY</p><h2>YOUR NEXT<br/><em>STEP.</em></h2></div>
           <div><p className="oternal-large-copy">OTERNAL is currently in development.</p><p className="oternal-body">The Android APK will be available here when the official release file is ready. Google Play access will be added later.</p><Link href={OTERNAL_LAUNCH_PATH} className="oternal-button">OPEN OTERNAL</Link></div>
         </div>
